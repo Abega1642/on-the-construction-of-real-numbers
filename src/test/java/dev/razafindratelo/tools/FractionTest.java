@@ -8,6 +8,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FractionTest {
 
+    /**
+     *  TEST FRACTION CONSTRUCTOR
+     */
+
     @Test
     void can_not_have_zero_denominator() {
         int numerator = new Random().nextInt();
@@ -15,6 +19,10 @@ class FractionTest {
 
         assertThrows(IllegalArgumentException.class, () -> new Fraction(4, denominator));
     }
+
+    /**
+     *  TEST SIMPLIFY FRACTION METHOD
+     */
 
     @Test
     void simplify() {
@@ -34,6 +42,9 @@ class FractionTest {
         assertEquals(new Fraction(3, 1), fraction);
     }
 
+    /**
+     *  TEST ADD FRACTION METHOD
+     */
 
     @Test
     void add_1_half_and_3_fourteenth() {
@@ -70,4 +81,31 @@ class FractionTest {
 
         assertEquals(expected, actual);
     }
+
+    /**
+     *  TEST INVERSE FRACTION METHOD
+     */
+
+    @Test
+    void inverse_1_half() {
+        Fraction fraction1 = new Fraction(1, 2);
+
+        Fraction expected = new Fraction(2, 1);
+
+        fraction1.inverse();
+
+        assertEquals(expected, fraction1);
+    }
+
+    @Test
+    void inverse_3_half() {
+        Fraction fraction1 = new Fraction(3, 2);
+
+        Fraction expected = new Fraction(2, 3);
+
+        fraction1.inverse();
+
+        assertEquals(expected, fraction1);
+    }
+
 }
