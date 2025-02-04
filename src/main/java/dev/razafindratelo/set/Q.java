@@ -7,5 +7,9 @@ import dev.razafindratelo.tools.Fraction;
  */
 public interface Q extends R {
     Fraction add(Fraction f);
-    void inverse();
+    Fraction inverse();
+    Fraction multiply(Fraction f);
+    Fraction opposite();
+    Fraction abs();
+    Fraction divide(Fraction f);
 }

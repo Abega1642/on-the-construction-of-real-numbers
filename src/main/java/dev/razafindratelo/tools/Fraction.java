@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+import java.util.Random;
+
 @Data
 @ToString
 @EqualsAndHashCode
@@ -13,12 +15,25 @@ public class Fraction implements Tool, Q {
     private int numerator;
     private int denominator;
 
+
     public Fraction(int numerator, int denominator) {
         if (denominator == 0) {
-            throw new IllegalArgumentException("denominator must be greater non-zero");
+            throw new IllegalArgumentException("denominator must be non-zero");
         }
         this.numerator = numerator;
         this.denominator = denominator;
+    }
+
+    public static Fraction random() {
+        Random random = new Random();
+
+        int num = random.nextInt();
+        int den = random.nextInt();
+
+        while (den == 0) {
+            den = random.nextInt();
+        }
+        return new Fraction(num, den);
     }
 
     public void simplify() {
@@ -26,6 +41,18 @@ public class Fraction implements Tool, Q {
 
         numerator /= gcd;
         denominator /= gcd;
+
+        this.normalize();
+    }
+
+    public void normalize() {
+        int num = numerator;
+        int den = denominator;
+
+        if ((numerator < 0 && denominator < 0) || (numerator > 0 && denominator < 0)) {
+            this.numerator = -num;
+            this.denominator = -den;
+        }
     }
 
     @Override
@@ -53,11 +80,48 @@ public class Fraction implements Tool, Q {
     }
 
     @Override
-    public void inverse() {
+    public Fraction inverse() {
         int num = this.denominator;
         int den = this.numerator;
 
-        this.numerator  = num;
-        this.denominator = den;
+        return new Fraction(num, den);
+    }
+
+    @Override
+    public Fraction multiply(Fraction f) {
+        Fraction product = new Fraction(
+                this.numerator * f.getNumerator(),
+                this.denominator * f.getDenominator()
+        );
+
+        product.simplify();
+
+        return product;
+    }
+
+    @Override
+    public Fraction opposite() {
+        this.simplify();
+
+        return new Fraction(
+                -this.numerator,
+                this.denominator
+        );
+    }
+
+    @Override
+    public Fraction abs() {
+        this.normalize();
+
+        return new Fraction(
+                this.numerator < 0 ?  - this.numerator : this.numerator,
+                this.denominator
+        );
+
+    }
+
+    @Override
+    public Fraction divide(Fraction f) {
+        return this.multiply(f.inverse());
     }
 }
