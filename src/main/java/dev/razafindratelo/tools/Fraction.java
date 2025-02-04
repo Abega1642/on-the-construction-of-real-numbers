@@ -1,6 +1,6 @@
 package dev.razafindratelo.tools;
 
-import dev.razafindratelo.utils.NaturalNumber;
+import dev.razafindratelo.utils.Z;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -22,14 +22,14 @@ public class Fraction implements Tool {
     }
 
     public void simplify() {
-        int gcd = NaturalNumber.gcd(numerator, denominator);
+        int gcd = Z.gcd(numerator, denominator);
 
         numerator /= gcd;
         denominator /= gcd;
     }
 
     public Fraction add(Fraction frac) {
-        int denGCM = NaturalNumber.gcm(denominator, frac.getDenominator());
+        int denGCM = Z.gcm(denominator, frac.getDenominator());
 
         int leftSideMult = denGCM / this.denominator;
         int rightSideMult = denGCM /frac.denominator;

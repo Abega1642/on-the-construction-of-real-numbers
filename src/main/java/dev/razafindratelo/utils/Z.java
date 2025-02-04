@@ -1,6 +1,9 @@
 package dev.razafindratelo.utils;
 
-public class NaturalNumber {
+/**
+ *  Z stands for the set of negative or positive integer as in Mathematics
+ */
+public class Z {
 
     public static int gcd(int a, int b) {
         var euclidian =  Euclidian.division(a, b);
