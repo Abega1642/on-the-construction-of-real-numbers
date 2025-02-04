@@ -50,4 +50,12 @@ public class Fraction implements Tool {
 
         return added;
     }
+
+    public void inverse() {
+        int num = this.denominator;
+        int den = this.numerator;
+
+        this.numerator  = num;
+        this.denominator = den;
+    }
 }
