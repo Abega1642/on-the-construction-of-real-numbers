@@ -5,7 +5,6 @@ import dev.razafindratelo.set.Z;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-
 import java.util.Random;
 
 @Data
@@ -24,11 +23,11 @@ public class Fraction implements Tool, Q {
         this.denominator = denominator;
     }
 
-    public static Fraction random() {
+    public static Fraction random(int from, int to) {
         Random random = new Random();
 
-        int num = random.nextInt();
-        int den = random.nextInt();
+        int num = random.nextInt(from, to + 1 );
+        int den = random.nextInt(from, to + 1);
 
         while (den == 0) {
             den = random.nextInt();
@@ -100,6 +99,11 @@ public class Fraction implements Tool, Q {
     }
 
     @Override
+    public Fraction divide(Fraction f) {
+        return this.multiply(f.inverse());
+    }
+
+    @Override
     public Fraction opposite() {
         this.simplify();
 
@@ -120,8 +124,31 @@ public class Fraction implements Tool, Q {
 
     }
 
-    @Override
-    public Fraction divide(Fraction f) {
-        return this.multiply(f.inverse());
+    public Fraction toThePowerOf(int n) {
+        this.simplify();
+
+        if (n == 0) {
+            return new Fraction(1, 1);
+
+        } else if (n >= 1) {
+            Fraction result = this;
+
+            for (int i = 1; i < n; i++) {
+                result = result.multiply(this);
+            }
+
+            result.simplify();
+
+            return result;
+
+        } else {
+            Fraction result = this.inverse();
+            for (int i = 1; i < -n; i++) {
+                result = result.multiply(this.inverse());
+            }
+            result.simplify();
+
+            return result;
+        }
     }
 }
