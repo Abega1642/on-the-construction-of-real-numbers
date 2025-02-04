@@ -33,4 +33,41 @@ class FractionTest {
 
         assertEquals(new Fraction(3, 1), fraction);
     }
+
+
+    @Test
+    void add_1_half_and_3_fourteenth() {
+        Fraction fraction1 = new Fraction(1, 2);
+        Fraction fraction2 = new Fraction(3, 14);
+
+        Fraction expected = new Fraction(5, 7);
+
+        Fraction actual = fraction1.add(fraction2);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void add_1_half_and_1_seventh() {
+        Fraction fraction1 = new Fraction(1, 7);
+        Fraction fraction2 = new Fraction(1, 2);
+
+        Fraction expected = new Fraction(9, 14);
+
+        Fraction actual = fraction1.add(fraction2);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void add_8_third_and_9_seventh() {
+        Fraction fraction1 = new Fraction(8, 3);
+        Fraction fraction2 = new Fraction(9, 7);
+
+        Fraction expected = new Fraction(83, 21);
+
+        Fraction actual = fraction1.add(fraction2);
+
+        assertEquals(expected, actual);
+    }
 }
