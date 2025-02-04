@@ -1,4 +1,4 @@
-package dev.razafindratelo;
+package dev.razafindratelo.set;
 
 import dev.razafindratelo.tools.Fraction;
 

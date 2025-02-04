@@ -1,6 +1,7 @@
 package dev.razafindratelo.tools;
 
-import dev.razafindratelo.utils.Z;
+import dev.razafindratelo.set.Q;
+import dev.razafindratelo.set.Z;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -8,10 +9,9 @@ import lombok.ToString;
 @Data
 @ToString
 @EqualsAndHashCode
-public class Fraction implements Tool {
+public class Fraction implements Tool, Q {
     private int numerator;
     private int denominator;
-
 
     public Fraction(int numerator, int denominator) {
         if (denominator == 0) {
@@ -28,6 +28,7 @@ public class Fraction implements Tool {
         denominator /= gcd;
     }
 
+    @Override
     public Fraction add(Fraction frac) {
         int denGCM = Z.gcm(denominator, frac.getDenominator());
 
@@ -51,6 +52,7 @@ public class Fraction implements Tool {
         return added;
     }
 
+    @Override
     public void inverse() {
         int num = this.denominator;
         int den = this.numerator;

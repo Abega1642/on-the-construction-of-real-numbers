@@ -1,9 +1,11 @@
-package dev.razafindratelo.utils;
+package dev.razafindratelo.set;
+
+import dev.razafindratelo.utils.Euclidian;
 
 /**
- *  Z stands for the set of negative or positive integer as in Mathematics
+ *  Z stands for the set of negative and positive integer as in Mathematics
  */
-public class Z {
+public class Z implements R {
 
     public static int gcd(int a, int b) {
         var euclidian =  Euclidian.division(a, b);
