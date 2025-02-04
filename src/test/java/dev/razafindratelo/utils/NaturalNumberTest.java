@@ -76,4 +76,48 @@ class NaturalNumberTest {
         assertEquals(gcd_3, actual_5_1);
         assertEquals(gcd_3, actual_5_2);
     }
+
+    @Test
+    void gcm_of_8_and_4() {
+        int gcm = 8;
+
+        int actual = NaturalNumber.gcm(8, 4);
+        int actual2 = NaturalNumber.gcm(4, 8);
+
+        assertEquals(gcm, actual);
+        assertEquals(gcm, actual2);
+    }
+
+    @Test
+    void gcm_of_124_and_1() {
+        int gcm = 124;
+
+        int actual = NaturalNumber.gcm(124, 1);
+        int actual2 = NaturalNumber.gcm(1, 124);
+
+        assertEquals(gcm, actual);
+        assertEquals(gcm, actual2);
+    }
+
+    @Test
+    void gcm_of_14_26() {
+        int gcm = 2 * 7 * 13;
+
+        int actual = NaturalNumber.gcm(14, 26);
+        int actual2 = NaturalNumber.gcm(26, 14);
+
+        assertEquals(gcm, actual);
+        assertEquals(gcm, actual2);
+    }
+
+    @Test
+    void gcm_of_28_26() {
+        int gcm = 4 * 7 * 13;
+
+        int actual = NaturalNumber.gcm(28, 26);
+        int actual2 = NaturalNumber.gcm(26, 28);
+
+        assertEquals(gcm, actual);
+        assertEquals(gcm, actual2);
+    }
 }
