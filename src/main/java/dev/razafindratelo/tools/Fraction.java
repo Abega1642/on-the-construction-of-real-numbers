@@ -11,11 +11,11 @@ import java.util.Random;
 @ToString
 @EqualsAndHashCode
 public class Fraction implements Tool, Q {
-    private int numerator;
-    private int denominator;
+    private long numerator;
+    private long denominator;
 
 
-    public Fraction(int numerator, int denominator) {
+    public Fraction(long numerator, long denominator) {
         if (denominator == 0) {
             throw new IllegalArgumentException("denominator must be non-zero");
         }
@@ -23,20 +23,20 @@ public class Fraction implements Tool, Q {
         this.denominator = denominator;
     }
 
-    public static Fraction random(int from, int to) {
+    public static Fraction random(long from, long to) {
         Random random = new Random();
 
-        int num = random.nextInt(from, to + 1 );
-        int den = random.nextInt(from, to + 1);
+        long num = random.nextLong(from, to + 1 );
+        long den = random.nextLong(from, to + 1);
 
         while (den == 0) {
-            den = random.nextInt();
+            den = random.nextLong(from, to + 1);
         }
         return new Fraction(num, den);
     }
 
     public void simplify() {
-        int gcd = Z.gcd(numerator, denominator);
+        long gcd = Z.gcd(numerator, denominator);
 
         numerator /= gcd;
         denominator /= gcd;
@@ -45,8 +45,8 @@ public class Fraction implements Tool, Q {
     }
 
     public void normalize() {
-        int num = numerator;
-        int den = denominator;
+        long num = numerator;
+        long den = denominator;
 
         if ((numerator < 0 && denominator < 0) || (numerator > 0 && denominator < 0)) {
             this.numerator = -num;
@@ -56,10 +56,10 @@ public class Fraction implements Tool, Q {
 
     @Override
     public Fraction add(Fraction frac) {
-        int denGCM = Z.gcm(denominator, frac.getDenominator());
+        long denGCM = Z.gcm(denominator, frac.getDenominator());
 
-        int leftSideMult = denGCM / this.denominator;
-        int rightSideMult = denGCM /frac.denominator;
+        long leftSideMult = denGCM / this.denominator;
+        long rightSideMult = denGCM /frac.denominator;
 
 
         this.denominator *= leftSideMult;
@@ -80,8 +80,8 @@ public class Fraction implements Tool, Q {
 
     @Override
     public Fraction inverse() {
-        int num = this.denominator;
-        int den = this.numerator;
+        long num = this.denominator;
+        long den = this.numerator;
 
         return new Fraction(num, den);
     }
@@ -124,7 +124,7 @@ public class Fraction implements Tool, Q {
 
     }
 
-    public Fraction toThePowerOf(int n) {
+    public Fraction toThePowerOf(long n) {
         this.simplify();
 
         if (n == 0) {
@@ -133,7 +133,7 @@ public class Fraction implements Tool, Q {
         } else if (n >= 1) {
             Fraction result = this;
 
-            for (int i = 1; i < n; i++) {
+            for (long i = 1; i < n; i++) {
                 result = result.multiply(this);
             }
 
@@ -143,12 +143,16 @@ public class Fraction implements Tool, Q {
 
         } else {
             Fraction result = this.inverse();
-            for (int i = 1; i < -n; i++) {
+            for (long i = 1; i < -n; i++) {
                 result = result.multiply(this.inverse());
             }
             result.simplify();
 
             return result;
         }
+    }
+    
+    public Fraction add(long n) {
+        return null;
     }
 }

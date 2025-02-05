@@ -3,15 +3,15 @@ package dev.razafindratelo.utils;
 import java.util.Map;
 
 public class Euclidian {
-    public static Map<String, Integer> division (int a, int b) {
-        int q;
-        int r;
+    public static Map<String, Long> division (long a, long b) {
+        long q;
+        long r;
 
         if (a == 0 && b == 0) {
-            return Map.of("a", 0, "b", 0, "q", 0, "r", 0);
+            return Map.of("a", 0L, "b", 0L, "q", 0L, "r", 0L);
         }
         if (b == 0) {
-            return Map.of("a", a, "b", b, "q", 0, "r", a);
+            return Map.of("a", a, "b", b, "q", 0L, "r", a);
         }
 
         if (a < 0) {

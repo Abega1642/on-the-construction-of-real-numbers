@@ -8,7 +8,7 @@ class EuclidianTest {
 
     @Test
     void euclidian_division_of_zero_and_zero() {
-        Map<String, Integer> expected = Map.of("a", 0, "b", 0, "q", 0, "r", 0);
+        Map<String, Long> expected = Map.of("a", 0L, "b", 0L, "q", 0L, "r", 0L);
 
         var actual = Euclidian.division(0, 0);
 
@@ -17,7 +17,7 @@ class EuclidianTest {
 
     @Test
     void euclidian_division_of_a_non_zero_by_zero() {
-        Map<String, Integer> expected = Map.of("a", 4, "b", 0, "q", 0, "r", 4);
+        Map<String, Long> expected = Map.of("a", 4L, "b", 0L, "q", 0L, "r", 4L);
 
         var actual = Euclidian.division(4, 0);
 
@@ -26,7 +26,7 @@ class EuclidianTest {
 
     @Test
     void euclidian_division_of_a_zero_by_non_zero() {
-        Map<String, Integer> expected = Map.of("a", 0, "b", 21, "q", 0, "r", 0);
+        Map<String, Long> expected = Map.of("a", 0L, "b", 21L, "q", 0L, "r", 0L);
 
         var actual = Euclidian.division(0, 21);
 
@@ -35,8 +35,8 @@ class EuclidianTest {
 
     @Test
     void euclidian_division_of_non_zero_by_non_zero() {
-        Map<String, Integer> expected_1 = Map.of("a", 54, "b", 23, "q", 2, "r", 8);
-        Map<String, Integer> expected_2 = Map.of("a", 23, "b", 54, "q", 0, "r", 23);
+        Map<String, Long> expected_1 = Map.of("a", 54L, "b", 23L, "q", 2L, "r", 8L);
+        Map<String, Long> expected_2 = Map.of("a", 23L, "b", 54L, "q", 0L, "r", 23L);
 
         var actual_1 = Euclidian.division(54, 23);
         var actual_2 = Euclidian.division(23, 54);
@@ -48,7 +48,7 @@ class EuclidianTest {
 
     @Test
     void euclidian_division_of_negative_number() {
-        Map<String, Integer> expected = Map.of("a", -23, "b", 14, "q", -2, "r", 5);
+        Map<String, Long> expected = Map.of("a", -23L, "b", 14L, "q", -2L, "r", 5L);
 
         var actual = Euclidian.division(-23, 14);
 
@@ -57,7 +57,7 @@ class EuclidianTest {
 
     @Test
     void euclidian_division_of_negative_number_2() {
-        Map<String, Integer> expected = Map.of("a", -23, "b", -14, "q", 2, "r", 5);
+        Map<String, Long> expected = Map.of("a", -23L, "b", -14L, "q", 2L, "r", 5L);
 
         var actual = Euclidian.division(-23, -14);
 
@@ -66,7 +66,7 @@ class EuclidianTest {
 
     @Test
     void euclidian_division_of_negative_number_3() {
-        Map<String, Integer> expected = Map.of("a", 23, "b", -14, "q", -1, "r", 9);
+        Map<String, Long> expected = Map.of("a", 23L, "b", -14L, "q", -1L, "r", 9L);
 
         var actual = Euclidian.division(23, -14);
 

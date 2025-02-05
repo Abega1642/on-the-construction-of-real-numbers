@@ -14,8 +14,8 @@ class FractionTest {
 
     @Test
     void can_not_have_zero_denominator() {
-        int numerator = new Random().nextInt();
-        int denominator = 0;
+        long numerator = new Random().nextLong();
+        long denominator = 0;
 
         assertThrows(IllegalArgumentException.class, () -> new Fraction(numerator, denominator));
     }
@@ -25,7 +25,7 @@ class FractionTest {
      */
     @Test
     void get_a_random_valid_fraction() {
-        int i = 0;
+        long i = 0;
 
         while(i < 1_000_000) {
             Fraction frac = Fraction.random(-99999, 999999);
@@ -168,7 +168,7 @@ class FractionTest {
 
     @Test
     void can_not_inverse_zero_over_any_denominator() {
-        Fraction fraction = new Fraction(0, new Random().nextInt());
+        Fraction fraction = new Fraction(0, new Random().nextLong());
 
         assertThrows(IllegalArgumentException.class, fraction::inverse);
 
@@ -402,10 +402,10 @@ class FractionTest {
     void get_random_positive_power_of_a_random_fraction() {
         Fraction frac = Fraction.random(1, 20);
 
-        int pow = new Random().nextInt(0, 10);
+        long pow = new Random().nextLong(0, 10);
 
-        int num = (int) Math.pow(frac.getNumerator(), pow);
-        int den = (int) Math.pow(frac.getDenominator(), pow);
+        long num = (long) Math.pow(frac.getNumerator(), pow);
+        long den = (long) Math.pow(frac.getDenominator(), pow);
 
         Fraction expected = new Fraction(num, den);
 
