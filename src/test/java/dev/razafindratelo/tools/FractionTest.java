@@ -21,10 +21,10 @@ class FractionTest {
     }
 
     /**
-     *  TEST RANDOM FRACTION
+     *  TEST RANDOM FRACTION CONSTRUCTOR
      */
     @Test
-    void get_a_random_valid_fraction() {
+    void do_1_000_000_test_about_get_a_random_valid_fraction() {
         long i = 0;
 
         while(i < 1_000_000) {
@@ -32,6 +32,32 @@ class FractionTest {
             assertNotEquals(0, frac.getDenominator());
             i++;
         }
+    }
+
+    /**
+     *  TEST GET VALUE FRACTION METHOD
+     */
+
+    @Test
+    void get_value_of_one_half_() {
+        Fraction frac = new Fraction(1, 2);
+
+        double expected = 0.5D;
+
+        double actual = frac.getValue();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void get_value_of_one_fourth_() {
+        Fraction frac = new Fraction(1, 4);
+
+        double expected = 0.25D;
+
+        double actual = frac.getValue();
+
+        assertEquals(expected, actual);
     }
 
     /**
@@ -141,6 +167,49 @@ class FractionTest {
     }
 
     /**
+     *  TEST ADD TO A INTEGER FRACTION METHOD
+     */
+
+    @Test
+    void add_one_half_with_a_two() {
+        long num = 2L;
+        Fraction frac  = new Fraction(1, 2);
+
+        Fraction expected = new Fraction(5, 2);
+
+        Fraction actual = frac.add(num);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void add_seven_half_with_a_eight() {
+        long num = 8L;
+        Fraction frac = new Fraction(7, 2);
+
+        Fraction expected = new Fraction(23, 2);
+
+        Fraction actual = frac.add(num);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void add_random_fraction_by_zero() {
+        Fraction frac = Fraction.random(-200, 200);
+
+        for (int i = 0; i < 1_000_000; i++) {
+
+            Fraction actual = frac.add(0L);
+
+            frac.simplify();
+
+            assertEquals(frac, actual);
+        }
+    }
+
+
+    /**
      *  TEST INVERSE FRACTION METHOD
      */
 
@@ -175,7 +244,7 @@ class FractionTest {
     }
 
     /**
-     *  TEST MULTIPLICATION FRACTION METHOD
+     *  TEST MULTIPLY FRACTION METHOD
      */
     @Test
     void multiply_1_half_by_1_half() {
@@ -208,13 +277,59 @@ class FractionTest {
         Fraction fraction2 = new Fraction(3, 2);
 
 
-        Fraction expected = new Fraction(1, 1);
+        Fraction expected = Fraction.ONE;
 
         Fraction actual = fraction1.multiply(fraction2);
         Fraction actual2 = fraction2.multiply(fraction1);
 
         assertEquals(expected, actual);
         assertEquals(expected, actual2);
+    }
+
+    @Test
+    void multiply_random_fraction_by_zero_fraction() {
+        Fraction frac = Fraction.random(-200, 200);
+        Fraction fraction = new Fraction(0, new Random().nextLong(-200,200));
+
+        for (int i = 0; i < 1_000_000; i++) {
+            Fraction actual = frac.multiply(fraction);
+
+            Fraction expected = Fraction.ZERO;
+
+            assertEquals(expected, actual);
+
+        }
+
+    }
+
+    /**
+     *  TEST MULTIPLY TO INTEGER FRACTION METHOD
+     */
+
+    @Test
+    void multiply_one_half_by_two() {
+        Fraction frac = new Fraction(1, 2);
+
+        Fraction expected = Fraction.ONE;
+
+        Fraction actual = frac.multiply(2);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void multiply_random_fraction_by_zero() {
+        Fraction frac = Fraction.random(-200, 200);
+
+        for (int i = 0; i < 1_000_000; i++) {
+            frac.simplify();
+
+            Fraction expected = Fraction.ZERO;
+
+            Fraction actual = frac.multiply(0);
+
+            assertEquals(expected, actual);
+        }
     }
 
     /**
@@ -226,7 +341,7 @@ class FractionTest {
 
         Fraction fraction1 = Fraction.random(-999999, 999999);
 
-        Fraction expected = new Fraction(1, 1);
+        Fraction expected = Fraction.ONE;
 
         assertEquals(expected, fraction1.divide(fraction1));
     }
@@ -303,7 +418,7 @@ class FractionTest {
     @Test
     void get_absolute_value_of_one_over_minus_four() {
         Fraction frac = new Fraction(1, -4);
-        
+
         Fraction expected = new Fraction(1, 4);
 
         Fraction actual = frac.abs();
@@ -323,12 +438,17 @@ class FractionTest {
     }
 
     @Test
-    void get_absolute_value_of_positive_fraction() {
-        Fraction frac = new Fraction(14263, 845164956);
+    void do_1_000_000_test_about_get_absolute_value_of_positive_fraction() {
+        Fraction frac = Fraction.random(0, 99999);
 
-        Fraction actual = frac.abs();
+        for(int i = 0; i < 500_000; i++) {
+            Fraction actual = frac.abs();
 
-        assertEquals(frac, actual);
+            frac.simplify();
+
+            assertEquals(frac, actual);
+        }
+
     }
 
     /**
@@ -336,23 +456,31 @@ class FractionTest {
      */
 
     @Test
-    void get_random_fraction_to_the_power_of_zero() {
-        Fraction frac = Fraction.random(-999999, 999999);
+    void do_1_000_000_test_about_get_random_fraction_to_the_power_of_zero() {
+        Fraction frac = Fraction.random(-9999, 9999);
 
-        Fraction expected = new Fraction(1, 1);
+        Fraction expected = Fraction.ONE;
 
-        Fraction actual = frac.toThePowerOf(0);
+        for(int i = 0; i < 1_000_000; i ++) {
 
-        assertEquals(expected, actual);
+            Fraction actual = frac.toThePowerOf(0);
+
+            assertEquals(expected, actual);
+        }
+
     }
 
     @Test
-    void get_random_fraction_to_the_power_of_ONE() {
-        Fraction frac = Fraction.random(-9999, 9999999);
+    void do_1_000_000_test_about_get_random_fraction_to_the_power_of_ONE() {
+        Fraction frac = Fraction.random(-9999, 9999);
 
-        Fraction actual = frac.toThePowerOf(1);
+        for(int i = 0; i < 1_000_000; i++) {
 
-        assertEquals(frac, actual);
+            Fraction actual = frac.toThePowerOf(1);
+            frac.simplify();
+
+            assertEquals(frac, actual);
+        }
     }
 
     @Test
@@ -365,7 +493,6 @@ class FractionTest {
 
         assertEquals(expected, actual);
     }
-
     @Test
     void get_two_eighth_to_the_power_of_2() {
         Fraction frac = new Fraction(2, 4);
@@ -376,6 +503,7 @@ class FractionTest {
 
         assertEquals(expected, actual);
     }
+
     @Test
     void get_one_half_to_the_power_of_minus_one() {
         Fraction frac = new Fraction(1, 2);
@@ -408,6 +536,7 @@ class FractionTest {
         long den = (long) Math.pow(frac.getDenominator(), pow);
 
         Fraction expected = new Fraction(num, den);
+        expected.simplify();
 
         Fraction actual = frac.toThePowerOf(pow);
 
