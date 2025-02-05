@@ -13,14 +13,21 @@ import java.util.Random;
 public class Fraction implements Tool, Q {
     private long numerator;
     private long denominator;
+    public static Fraction ZERO = new Fraction(0, 1);
+    public static Fraction ONE = new Fraction(1, 1);
 
 
     public Fraction(long numerator, long denominator) {
         if (denominator == 0) {
-            throw new IllegalArgumentException("denominator must be non-zero");
+            throw new IllegalArgumentException("Denominator must be non-zero");
         }
         this.numerator = numerator;
         this.denominator = denominator;
+    }
+
+    public Fraction(long n) {
+        this.numerator = n;
+        this.denominator = 1;
     }
 
     public static Fraction random(long from, long to) {
@@ -35,13 +42,8 @@ public class Fraction implements Tool, Q {
         return new Fraction(num, den);
     }
 
-    public void simplify() {
-        long gcd = Z.gcd(numerator, denominator);
-
-        numerator /= gcd;
-        denominator /= gcd;
-
-        this.normalize();
+    public double getValue() {
+        return (double) this.numerator / this.denominator;
     }
 
     public void normalize() {
@@ -52,6 +54,15 @@ public class Fraction implements Tool, Q {
             this.numerator = -num;
             this.denominator = -den;
         }
+    }
+
+    public void simplify() {
+        long gcd = Z.gcd(numerator, denominator);
+
+        numerator /= gcd;
+        denominator /= gcd;
+
+        this.normalize();
     }
 
     @Override
@@ -78,12 +89,13 @@ public class Fraction implements Tool, Q {
         return added;
     }
 
-    @Override
-    public Fraction inverse() {
-        long num = this.denominator;
-        long den = this.numerator;
+    public Fraction add(long n) {
+        Fraction frac = new Fraction(n);
+        Fraction added = this.add(frac);
 
-        return new Fraction(num, den);
+        added.simplify();
+
+        return added;
     }
 
     @Override
@@ -96,6 +108,22 @@ public class Fraction implements Tool, Q {
         product.simplify();
 
         return product;
+    }
+
+    public Fraction multiply(long n) {
+        Fraction frac = new Fraction(n);
+        Fraction multiplied = this.multiply(frac);
+
+        multiplied.simplify();
+        return multiplied;
+    }
+
+    @Override
+    public Fraction inverse() {
+        long num = this.denominator;
+        long den = this.numerator;
+
+        return new Fraction(num, den);
     }
 
     @Override
@@ -117,11 +145,13 @@ public class Fraction implements Tool, Q {
     public Fraction abs() {
         this.normalize();
 
-        return new Fraction(
+        Fraction result = new Fraction(
                 this.numerator < 0 ?  - this.numerator : this.numerator,
                 this.denominator
         );
+        result.simplify();
 
+        return result;
     }
 
     public Fraction toThePowerOf(long n) {
@@ -150,9 +180,5 @@ public class Fraction implements Tool, Q {
 
             return result;
         }
-    }
-    
-    public Fraction add(long n) {
-        return null;
     }
 }
