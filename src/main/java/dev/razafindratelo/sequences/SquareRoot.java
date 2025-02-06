@@ -39,7 +39,7 @@ public class SquareRoot {
             Fraction result = new Fraction(num, den);
             result.simplify();
 
-            return result.inverse();
+            return result;
 
         } else if (n == 2) {
             long num = 4 * rootValue * ((rootValue * rootValue) + this.n );
@@ -47,23 +47,37 @@ public class SquareRoot {
 
             Fraction result = new Fraction(num, den);
             result.simplify();
-            return result.inverse();
+            return result;
 
         } else {
-            Fraction sq_n = sq_(n);
             Fraction sq_n_1 = sq_(n-1);
+            Fraction sq_n_2 = sq_(n-2);
 
-            System.out.println("SQ_n = " + sq_n);
-            System.out.println("SQ_n_1 = " + sq_n_1);
 
-            Fraction left = sq_n.multiply(2);
-
-            Fraction right = sq_n.toThePowerOf(2)
-                    .divide(
-                            sq_n_1.toThePowerOf(2).multiply(2)
-                    ).add(-1);
-
-            return sq_n.multiply(2).multiply(right);
+            return sq_n_1.multiply(2).multiply(
+                    sq_n_1.toThePowerOf(2)
+                            .divide(
+                                    sq_n_2.toThePowerOf(2).multiply(2)
+                            ).add(-1)
+            );
         }
     }
+
+    public static void main(String[] args) {
+        var sq = new SquareRoot(5);
+        List<Fraction> values = new ArrayList<>();
+
+        for(int i = 1; i < 5; i++) {
+            values.add(sq.sq_(i));
+        }
+        Fraction fraction = Fraction.ZERO;
+        for (int i = 0; i < values.size(); i++) {
+            fraction = fraction.add(values.get(i).inverse().opposite());
+        }
+        var res = fraction.add(sq.rootValue);
+        double val = res.getValue();
+
+        System.out.println("RESULT == "+ val + " /// COMPARED TO 5 = " + val * val );
+    }
+
 }
