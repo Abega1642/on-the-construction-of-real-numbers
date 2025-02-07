@@ -5,14 +5,16 @@ import dev.razafindratelo.set.Z;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+
+import java.math.BigInteger;
 import java.util.Random;
 
 @Data
 @ToString
 @EqualsAndHashCode
 public class Fraction implements Tool, Q {
-    private long numerator;
-    private long denominator;
+    private BigInteger numerator;
+    private BigInteger denominator;
     public static Fraction ZERO = new Fraction(0, 1);
     public static Fraction ONE = new Fraction(1, 1);
 
@@ -21,13 +23,18 @@ public class Fraction implements Tool, Q {
         if (denominator == 0) {
             throw new IllegalArgumentException("Denominator must be non-zero");
         }
+        this.numerator = BigInteger.valueOf(numerator);
+        this.denominator = BigInteger.valueOf(denominator);
+    }
+
+    public Fraction(BigInteger numerator, BigInteger denominator) {
         this.numerator = numerator;
         this.denominator = denominator;
     }
 
     public Fraction(long n) {
-        this.numerator = n;
-        this.denominator = 1;
+        this.numerator = BigInteger.valueOf(n);
+        this.denominator = BigInteger.ONE;
     }
 
     public static Fraction random(long from, long to) {
@@ -47,12 +54,15 @@ public class Fraction implements Tool, Q {
     }
 
     public void normalize() {
-        long num = numerator;
-        long den = denominator;
+        BigInteger num = numerator;
+        BigInteger den = denominator;
 
-        if ((numerator < 0 && denominator < 0) || (numerator > 0 && denominator < 0)) {
-            this.numerator = -num;
-            this.denominator = -den;
+        if ((num.max(BigInteger.ZERO).equals(BigInteger.ZERO))
+                || (num.max(BigInteger.ZERO).equals(num) && den.max(BigInteger.ZERO).equals(BigInteger.ZERO))
+        ) {
+            this.numerator = num.multiply(BigInteger.valueOf(-1));
+            this.denominator = den.multiply(BigInteger.valueOf(-1));
+
         }
     }
 
