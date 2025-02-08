@@ -2,6 +2,8 @@ package dev.razafindratelo.tools;
 
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -29,7 +31,7 @@ class FractionTest {
 
         while(i < 1_000_000) {
             Fraction frac = Fraction.random(-99999, 999999);
-            assertNotEquals(0, frac.getDenominator());
+            assertNotEquals(BigInteger.ZERO, frac.getDenominator());
             i++;
         }
     }
@@ -42,9 +44,9 @@ class FractionTest {
     void get_value_of_one_half_() {
         Fraction frac = new Fraction(1, 2);
 
-        double expected = 0.5D;
+        BigDecimal expected = BigDecimal.valueOf(0.5);
 
-        double actual = frac.getValue();
+        BigDecimal actual = frac.getValue();
 
         assertEquals(expected, actual);
     }
@@ -53,9 +55,9 @@ class FractionTest {
     void get_value_of_one_fourth_() {
         Fraction frac = new Fraction(1, 4);
 
-        double expected = 0.25D;
+        BigDecimal expected = BigDecimal.valueOf(0.25);
 
-        double actual = frac.getValue();
+        BigDecimal actual = frac.getValue();
 
         assertEquals(expected, actual);
     }
@@ -530,10 +532,10 @@ class FractionTest {
     void get_random_positive_power_of_a_random_fraction() {
         Fraction frac = Fraction.random(1, 20);
 
-        long pow = new Random().nextLong(0, 10);
+        int pow = new Random().nextInt(0, 10);
 
-        long num = (long) Math.pow(frac.getNumerator(), pow);
-        long den = (long) Math.pow(frac.getDenominator(), pow);
+        BigInteger num = frac.getNumerator().pow(pow);
+        BigInteger den = frac.getDenominator().pow(pow);
 
         Fraction expected = new Fraction(num, den);
         expected.simplify();

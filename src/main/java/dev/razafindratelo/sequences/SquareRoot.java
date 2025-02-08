@@ -2,6 +2,8 @@ package dev.razafindratelo.sequences;
 
 import dev.razafindratelo.tools.Fraction;
 import lombok.Data;
+
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,9 +77,9 @@ public class SquareRoot {
             fraction = fraction.add(values.get(i).inverse().opposite());
         }
         var res = fraction.add(sq.rootValue);
-        double val = res.getValue();
+        BigDecimal val = res.getValue();
 
-        System.out.println("RESULT == "+ val + " /// COMPARED TO 5 = " + val * val );
+        System.out.println("RESULT == "+ val + " /// COMPARED TO 5 = " + val);
     }
 
 }

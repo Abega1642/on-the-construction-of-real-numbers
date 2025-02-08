@@ -5,7 +5,7 @@ import dev.razafindratelo.set.Z;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Random;
 
@@ -40,17 +40,21 @@ public class Fraction implements Tool, Q {
     public static Fraction random(long from, long to) {
         Random random = new Random();
 
-        long num = random.nextLong(from, to + 1 );
-        long den = random.nextLong(from, to + 1);
+        BigInteger num = BigInteger.valueOf(random.nextLong(from, to + 1 ));
 
-        while (den == 0) {
-            den = random.nextLong(from, to + 1);
+        BigInteger den = BigInteger.valueOf(random.nextLong(from, to + 1));
+
+        while (den.equals(BigInteger.ZERO)) {
+            den = BigInteger.valueOf(random.nextLong(from, to + 1));
         }
         return new Fraction(num, den);
     }
 
-    public double getValue() {
-        return (double) this.numerator / this.denominator;
+    public BigDecimal getValue() {
+        return BigDecimal.valueOf(
+                this.numerator.divide(this.denominator)
+                        .doubleValue()
+        );
     }
 
     public void normalize() {
@@ -67,31 +71,32 @@ public class Fraction implements Tool, Q {
     }
 
     public void simplify() {
-        long gcd = Z.gcd(numerator, denominator);
+        BigInteger gcd = numerator.gcd(denominator);
 
-        numerator /= gcd;
-        denominator /= gcd;
+        numerator = numerator.divide(gcd);
+        denominator = denominator.divide(gcd);
 
         this.normalize();
     }
 
     @Override
     public Fraction add(Fraction frac) {
-        long denGCM = Z.gcm(denominator, frac.getDenominator());
-
-        long leftSideMult = denGCM / this.denominator;
-        long rightSideMult = denGCM /frac.denominator;
+        BigInteger denGCM = Z.gcm(denominator, frac.getDenominator());
 
 
-        this.denominator *= leftSideMult;
-        this.numerator *= leftSideMult;
+        BigInteger leftSideMult = denGCM.divide(this.denominator);
+        BigInteger rightSideMult = denGCM.divide(denominator);
 
-        frac.setDenominator(frac.getDenominator() * rightSideMult);
-        frac.setNumerator(frac.getNumerator() * rightSideMult);
+
+        this.denominator = denominator.multiply(leftSideMult);
+        this.numerator = numerator.multiply(leftSideMult);
+
+        frac.setDenominator(frac.getDenominator().multiply(rightSideMult));
+        frac.setNumerator(frac.getNumerator().multiply(rightSideMult));
 
 
         var added = new Fraction(
-                this.numerator + frac.getNumerator(),
+                this.numerator.add(frac.getNumerator()),
                 denGCM
         );
         added.simplify();
@@ -111,8 +116,8 @@ public class Fraction implements Tool, Q {
     @Override
     public Fraction multiply(Fraction f) {
         Fraction product = new Fraction(
-                this.numerator * f.getNumerator(),
-                this.denominator * f.getDenominator()
+                this.numerator.multiply(f.getNumerator()),
+                this.denominator.multiply(f.getDenominator())
         );
 
         product.simplify();
@@ -130,8 +135,8 @@ public class Fraction implements Tool, Q {
 
     @Override
     public Fraction inverse() {
-        long num = this.denominator;
-        long den = this.numerator;
+        BigInteger num = this.denominator;
+        BigInteger den = this.numerator;
 
         return new Fraction(num, den);
     }
@@ -146,7 +151,7 @@ public class Fraction implements Tool, Q {
         this.simplify();
 
         return new Fraction(
-                -this.numerator,
+                this.numerator.multiply(BigInteger.valueOf(-1)),
                 this.denominator
         );
     }
@@ -156,7 +161,8 @@ public class Fraction implements Tool, Q {
         this.normalize();
 
         Fraction result = new Fraction(
-                this.numerator < 0 ?  - this.numerator : this.numerator,
+                this.numerator.max(BigInteger.ZERO).equals(BigInteger.ZERO) ?
+                        this.numerator.multiply(BigInteger.valueOf(-1)) : this.numerator,
                 this.denominator
         );
         result.simplify();
