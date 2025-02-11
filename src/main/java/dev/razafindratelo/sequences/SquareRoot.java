@@ -66,12 +66,13 @@ public class SquareRoot {
     }
 
     public static void main(String[] args) {
-        var sq = new SquareRoot(5);
+        var sq = new SquareRoot(2);
         List<Fraction> values = new ArrayList<>();
 
-        for(int i = 1; i < 5; i++) {
+        for(int i = 1; i < 10; i++) {
             values.add(sq.sq_(i));
         }
+
         Fraction fraction = Fraction.ZERO;
         for (int i = 0; i < values.size(); i++) {
             fraction = fraction.add(values.get(i).inverse().opposite());
@@ -79,7 +80,10 @@ public class SquareRoot {
         var res = fraction.add(sq.rootValue);
         BigDecimal val = res.getValue();
 
-        System.out.println("RESULT == "+ val + " /// COMPARED TO 5 = " + val);
+        System.out.println("RESULT == "+ val );
+
+        System.out.println("VAL * VAL == " + val.multiply(val));
+
     }
 
 }
