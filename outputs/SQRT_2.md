@@ -44,3 +44,51 @@ $$
 And this gives us one of the most accurate and precise result.
 
 > Note: Remark that this result is given with `10_000` decimals.
+
+This is an additional code for looking at the structure of all element of that sequence :
+
+```java
+...
+    List<Fraction> sequences = values.stream().map(Fraction::inverse).toList();
+        int i = 1;
+        System.out.println("========== FACTIONS OF THE SEQUENCES OF SQRT(2) =========");
+        for(Fraction frac : sequences) {
+            System.out.println("a_" + i + " === " + frac);
+            i++;
+        }
+...
+```
+
+This is the output of this block of code :
+
+```cmd
+========== FACTIONS OF THE SEQUENCES OF SQRT(2) =========
+a_1 === Fraction(numerator=1, denominator=2)
+a_2 === Fraction(numerator=1, denominator=12)
+a_3 === Fraction(numerator=1, denominator=408)
+a_4 === Fraction(numerator=1, denominator=470832)
+a_5 === Fraction(numerator=1, denominator=627013566048)
+a_6 === Fraction(numerator=1, denominator=1111984844349868137938112)
+a_7 === Fraction(numerator=1, denominator=3497379255757941172020851852070562919437964212608)
+a_8 === Fraction(numerator=1, denominator=34596363615919099765318545389014861517389860071988342648187104766246565694525469768325292176831232)
+a_9 === Fraction(numerator=1, denominator=3385368114944226131160489088412764413184597197600430424080424489217455640335520865446091847042392283395113030493175270757327077204943610618917073241080260452775055121081948254768847591544963982848)
+```
+
+
+
+In a mathematical way, we can write this result as :
+$$
+a_1 = \frac{1}{2} \\ \\
+a_2 = \frac{1}{12} \\ \\
+a_3 = \frac{1}{408} \\ \\
+a_4 = \frac{1}{470832} \\ \\
+a_5 = \frac{1}{627013566048} \\ \\
+a_6 = \frac{1}{1111984844349868137938112} \\ \\
+a_7 = \frac{1}{3497379255757941172020851852070562919437964212608} \\ \\
+a_8 = \frac{1}{34596363615919099765318545389014861517389860071988342648187104766246565694525469768325292176831232} \\ \\
+a_9 = \frac{1}{3385368114944226131160489088412764413184597197600430424080424489217455640335520865446091847042392283395113030493175270757327077204943610618917073241080260452775055121081948254768847591544963982848}
+$$
+
+
+> Author: Abegà Razafindratelo
+

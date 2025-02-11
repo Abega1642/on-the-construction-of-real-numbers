@@ -77,12 +77,21 @@ public class SquareRoot {
         for (int i = 0; i < values.size(); i++) {
             fraction = fraction.add(values.get(i).inverse().opposite());
         }
+
         var res = fraction.add(sq.rootValue);
         BigDecimal val = res.getValue();
 
         System.out.println("RESULT == "+ val );
 
         System.out.println("VAL * VAL == " + val.multiply(val));
+
+        List<Fraction> sequences = values.stream().map(Fraction::inverse).toList();
+        int i = 1;
+        System.out.println("========== FACTIONS OF THE SEQUENCES OF SQRT(2) =========");
+        for(Fraction frac : sequences) {
+            System.out.println("a_"+ i + " === " +frac);
+            i++;
+        }
 
     }
 
