@@ -1,1 +1,1 @@
-#   On the construction of the real numbers
+#   On the construction of the square roots of natural numbers
