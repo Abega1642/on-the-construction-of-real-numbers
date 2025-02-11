@@ -7,6 +7,8 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.MathContext;
+import java.util.Objects;
 import java.util.Random;
 
 @Data
@@ -28,6 +30,9 @@ public class Fraction implements Tool, Q {
     }
 
     public Fraction(BigInteger numerator, BigInteger denominator) {
+        if (Objects.equals(denominator, BigInteger.ZERO)) {
+            throw new IllegalArgumentException("Denominator must be non-zero");
+        }
         this.numerator = numerator;
         this.denominator = denominator;
     }
@@ -51,22 +56,24 @@ public class Fraction implements Tool, Q {
     }
 
     public BigDecimal getValue() {
-        return BigDecimal.valueOf(
-                this.numerator.divide(this.denominator)
-                        .doubleValue()
-        );
+        return new BigDecimal(this.numerator).divide(new BigDecimal(this.denominator), new MathContext(1000));
     }
 
     public void normalize() {
+        BigInteger ZERO = BigInteger.ZERO;
         BigInteger num = numerator;
         BigInteger den = denominator;
 
-        if ((num.max(BigInteger.ZERO).equals(BigInteger.ZERO))
-                || (num.max(BigInteger.ZERO).equals(num) && den.max(BigInteger.ZERO).equals(BigInteger.ZERO))
-        ) {
-            this.numerator = num.multiply(BigInteger.valueOf(-1));
-            this.denominator = den.multiply(BigInteger.valueOf(-1));
+        boolean isDenominatorNegative = den.max(ZERO).equals(ZERO);
+        boolean isNumeratorNegative = num.max(ZERO).equals(ZERO);
 
+        if (isNumeratorNegative && isDenominatorNegative) {
+            this.numerator = num.abs();
+            this.denominator = den.abs();
+
+        } else if (!isNumeratorNegative && isDenominatorNegative) {
+            this.numerator = num.multiply(BigInteger.valueOf(-1));
+            this.denominator = den.abs();
         }
     }
 
@@ -85,7 +92,8 @@ public class Fraction implements Tool, Q {
 
 
         BigInteger leftSideMult = denGCM.divide(this.denominator);
-        BigInteger rightSideMult = denGCM.divide(denominator);
+        BigInteger rightSideMult = denGCM.divide(frac.getDenominator());
+
 
 
         this.denominator = denominator.multiply(leftSideMult);
@@ -109,7 +117,6 @@ public class Fraction implements Tool, Q {
         Fraction added = this.add(frac);
 
         added.simplify();
-
         return added;
     }
 
@@ -197,4 +204,6 @@ public class Fraction implements Tool, Q {
             return result;
         }
     }
+
+
 }

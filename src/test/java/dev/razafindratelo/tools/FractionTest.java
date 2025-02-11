@@ -60,6 +60,8 @@ class FractionTest {
         BigDecimal actual = frac.getValue();
 
         assertEquals(expected, actual);
+
+
     }
 
     /**
@@ -93,6 +95,17 @@ class FractionTest {
         assertEquals(new Fraction(1, 3), frac);
     }
 
+    @Test
+    void simplify_negative_denominator() {
+        Fraction frac = new Fraction(1, -15);
+
+        Fraction expected = new Fraction(-1, 15);
+
+        frac.simplify();
+
+        assertEquals(expected, frac);
+    }
+
     /**
      *  TEST NORMALIZE FRACTION METHOD
      */
@@ -105,6 +118,13 @@ class FractionTest {
 
         fraction.normalize();
 
+        assertEquals(expected, fraction);
+    }
+    @Test
+    void normalize_zero_over_minus_one() {
+        Fraction fraction = new Fraction(0, -1);
+        fraction.normalize();
+        Fraction expected = new Fraction(0, 1);
         assertEquals(expected, fraction);
     }
 
