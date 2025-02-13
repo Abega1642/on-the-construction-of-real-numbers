@@ -77,6 +77,7 @@ a_9 === Fraction(numerator=1, denominator=33853681149442261311604890884127644131
 
 
 In a mathematical way, we can write this result as :
+
 $$
 a_1 = \frac{1}{2} \\ \\
 a_2 = \frac{1}{12} \\ \\
@@ -90,5 +91,17 @@ a_9 = \frac{1}{33853681149442261311604890884127644131845971976004304240804244892
 $$
 
 
-> Author: Abegà Razafindratelo
 
+### Result after the test :
+
+As We can see, the result of the test in [*SquareRootTest.java*](../src/test/java/dev/razafindratelo/sequences/SquareRootTest.java), when we go to :
+
+$$
+n = 20
+$$
+
+the sequence have `10000` correct decimal values of the square root of 2.
+
+
+
+> Author: Abegà Razafindratelo
