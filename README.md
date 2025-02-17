@@ -74,6 +74,8 @@ is available.
 According to its implementation, we can find the expression of the sequence in the [SquareRoots](src/main/java/dev/razafindratelo/sequences/SquareRoot.java)`.sq_n` method.
 
 The mathematical expression of this sequence is :
+
+
 $$
 \text{let } m\in\mathbb{N}^{*} \text{ and } c^{2}\in\mathbb{N}^{*} \text{ be the mininum perfect square root greater or equal than }m. \\
 \text{Let } (a_n)_{n\in\mathbb{N}^*} \text{ be a sequence defined by the following recursion :}\\
@@ -84,7 +86,11 @@ a_2 = \frac{4c\left(c^{2} + m\right)}{\left(c^{2}-m\right)^{2}}	\\	\\
 a_{n+2} = 2a_{n+1}\cdot\left(\frac{a_{n+1}^{2}}{2a_{n}^{2}} - 1\right)
 \end{cases}
 $$
+
+
 Then the final sequence that gives us the square root of *m* is the following :
+
+
 $$
 \therefore \quad \sqrt{m} = c\,-\lim_{n \longrightarrow +\infty} \sum_{k = 1}^{n}{\frac{1}{a_k}} = c-\sum_{n = 1}^{\infty}{\frac{1}{a_n}}
 $$
