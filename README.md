@@ -2,6 +2,7 @@
 
 
 
+
 ## Introduction
 
 This repository contains a *Java* program that explores a rational sequence designed to approximate square roots of positive integers.
@@ -87,6 +88,7 @@ Then the final sequence that gives us the square root of *m* is the following :
 $$
 \therefore \quad \sqrt{m} = c\,-\lim_{n \longrightarrow +\infty} \sum_{k = 1}^{n}{\frac{1}{a_k}} = c-\sum_{n = 1}^{\infty}{\frac{1}{a_n}}
 $$
+
 
 
 > Author: Abegà Razafindratelo
