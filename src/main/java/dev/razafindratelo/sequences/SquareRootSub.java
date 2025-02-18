@@ -3,17 +3,19 @@ package dev.razafindratelo.sequences;
 import dev.razafindratelo.tools.Fraction;
 import lombok.Data;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This SquareRootSub, as a sub-sequence of the SquareRoot sequence, is my sequence (a_n).
+ */
 @Data
-public class SquareRoot {
+public class SquareRootSub {
     private long n;
     private List<Fraction> values;
     private long rootValue;
 
-    public SquareRoot(long n) {
+    public SquareRootSub(long n) {
         this.n = n;
         this.values = new ArrayList<>();
         this.rootValue = getTHEPerfectSquareRoot(n);
@@ -40,7 +42,7 @@ public class SquareRoot {
      * @param k : k is range of the square root sequence
      * @return the k-th value of the square root sequence
      */
-    public Fraction sq_(long k) {
+    public Fraction sqSub_(long k) {
         if (k == 0) {
             return new Fraction(rootValue);
         } else if (k == 1) {
@@ -61,8 +63,8 @@ public class SquareRoot {
             return result;
 
         } else {
-            Fraction sq_k_1 = sq_(k-1);
-            Fraction sq_k_2 = sq_(k-2);
+            Fraction sq_k_1 = sqSub_(k-1);
+            Fraction sq_k_2 = sqSub_(k-2);
 
 
             return sq_k_1.multiply(2).multiply(
