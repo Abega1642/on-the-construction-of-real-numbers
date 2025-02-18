@@ -43,7 +43,9 @@ public class SquareRootSub {
      * @return the k-th value of the square root sequence
      */
     public Fraction sqSub_(long k) {
-        if (k == 0) {
+        if (this.n == rootValue * rootValue) {
+            return Fraction.ZERO;
+        } else if (k == 0) {
             return new Fraction(rootValue);
         } else if (k == 1) {
             long num = 2 * rootValue;

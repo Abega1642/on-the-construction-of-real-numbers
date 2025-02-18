@@ -23,6 +23,12 @@ public class SquareRoot {
 
     public Fraction sq_(long k) {
         SquareRootSub sqSub = new SquareRootSub(n);
+
+        long perfectSquare = sqSub.getRootValue();
+
+        if (this.n ==  perfectSquare * perfectSquare) {
+            return new Fraction(perfectSquare);
+        }
         if (k == 0) {
             return new Fraction(sqSub.getRootValue());
         } else {
