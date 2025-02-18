@@ -19,6 +19,11 @@ public class SquareRoot {
         this.rootValue = getTHEPerfectSquareRoot(n);
     }
 
+    /**
+     * @param n : n is a positive integer
+     * @return the minimum positive square root of the perfect square greater or equal than n.
+     */
+
     private static long getTHEPerfectSquareRoot(long n) {
 
         long i = 0;
@@ -31,10 +36,14 @@ public class SquareRoot {
         }
     }
 
-    public Fraction sq_(long n) {
-        if (n == 0) {
+    /**
+     * @param k : k is range of the square root sequence
+     * @return the k-th value of the square root sequence
+     */
+    public Fraction sq_(long k) {
+        if (k == 0) {
             return new Fraction(rootValue);
-        } else if (n == 1) {
+        } else if (k == 1) {
             long num = 2 * rootValue;
             long den = (rootValue * rootValue) - this.n;
 
@@ -43,7 +52,7 @@ public class SquareRoot {
 
             return result;
 
-        } else if (n == 2) {
+        } else if (k == 2) {
             long num = 4 * rootValue * ((rootValue * rootValue) + this.n );
             long den = ((rootValue * rootValue) - this.n) * ((rootValue * rootValue) - this.n);
 
@@ -52,47 +61,17 @@ public class SquareRoot {
             return result;
 
         } else {
-            Fraction sq_n_1 = sq_(n-1);
-            Fraction sq_n_2 = sq_(n-2);
+            Fraction sq_k_1 = sq_(k-1);
+            Fraction sq_k_2 = sq_(k-2);
 
 
-            return sq_n_1.multiply(2).multiply(
-                    sq_n_1.toThePowerOf(2)
+            return sq_k_1.multiply(2).multiply(
+                    sq_k_1.toThePowerOf(2)
                             .divide(
-                                    sq_n_2.toThePowerOf(2).multiply(2)
+                                    sq_k_2.toThePowerOf(2).multiply(2)
                             ).add(-1)
             );
         }
-    }
-
-    public static void main(String[] args) {
-        var sq = new SquareRoot(2);
-        List<Fraction> values = new ArrayList<>();
-
-        for(int i = 1; i < 15; i++) {
-            values.add(sq.sq_(i));
-        }
-
-        Fraction fraction = Fraction.ZERO;
-        for (int i = 0; i < values.size(); i++) {
-            fraction = fraction.add(values.get(i).inverse().opposite());
-        }
-
-        var res = fraction.add(sq.rootValue);
-        BigDecimal val = res.getValue();
-
-        System.out.println("RESULT == "+ val );
-
-        System.out.println("VAL * VAL == " + val.multiply(val));
-
-        List<Fraction> sequences = values.stream().map(Fraction::inverse).toList();
-        int i = 1;
-        System.out.println("========== FACTIONS OF THE SEQUENCES OF SQRT(2) =========");
-        for(Fraction frac : sequences) {
-            System.out.println("a_"+ i + " === " +frac);
-            i++;
-        }
-
     }
 
 }
