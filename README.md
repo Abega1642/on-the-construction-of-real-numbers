@@ -73,27 +73,36 @@ is available.
 
 According to its implementation, we can find the expression of the sequence in the [SquareRoots](src/main/java/dev/razafindratelo/sequences/SquareRoot.java)`.sq_n` method.
 
-The mathematical expression of this sequence is the following.
+The mathematical expression of this sequence is the following :
 
-But first let's define what I called by the smallest perfect square greater or equal than the number we want to compute the square root.
-
+<p align="center">
+$$
+    \text{Let } m\in\mathbb{N}^{*}. \\
+$$
 <p>
-$$
-    \text{Let } m\inmathbb{N}^{*}. \\[8mm]
-    \text{Let } P \text{ be the set of all perfect square. }. \\[8mm]
-    \text{Therefore, let } c \text{ be the smallest perfect square greater or equal to } m.
-    \LeftRightlongarrow  \ c^{2} = min_{s\inP}{s - m}
-$$
+	$$
+		\text{Let } P \text{ be the set of all perfect square. }. \\
+	$$
 </p>
+<p>
+	$$
+	\text{Now, let } c \text{ be the smallest perfect square greater or equal to } m
+    	\Longleftrightarrow  \ c^{2} = \min_{s\in P} {\vert s - m\vert}
+	$$
+
 
 <p align="center">
 	$$
 		\text{let } m\in\mathbb{N}^{*} \text{ and } c^{2}\in\mathbb{N}^{*} \text{ be the mininum perfect square root greater or equal than }m. \\[8mm]
 		\text{Let $(a_n)_{n\in\mathbb{N}^{*}}$ be a sequence defined by the following recursion : } \qquad
-		(a_n) : \quad
+	$$
+</p>
+<p>
+	$$
+	(a_n) \ : \quad
 		\begin{cases}
-		a_1 = \frac{2c}{c^{2}-m}	\\	\\
-		a_2 = \frac{4c\left(c^{2} + m\right)}{\left(c^{2}-m\right)^{2}}	\\	\\
+		a_1 = \frac{2c}{c^{2}-m}	\\
+		a_2 = \frac{4c\left(c^{2} + m\right)}{\left(c^{2}-m\right)^{2}}	\\
 		a_{n+2} = 2a_{n+1}\cdot\left(\frac{a_{n+1}^{2}}{2a_{n}^{2}} - 1\right)
 		\end{cases}
 	$$
