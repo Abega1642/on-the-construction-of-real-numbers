@@ -56,7 +56,7 @@ public class Fraction implements Tool, Q {
     }
 
     public BigDecimal getValue() {
-        return new BigDecimal(this.numerator).divide(new BigDecimal(this.denominator), new MathContext(10_001));
+        return new BigDecimal(this.numerator).divide(new BigDecimal(this.denominator), new MathContext(10_002));
     }
 
     public void normalize() {
