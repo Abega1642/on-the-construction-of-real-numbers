@@ -26,7 +26,7 @@ So this program provides an object called _**Fraction**_ which represents fracti
 
 So by doing :
 ```java
-	Fraction one_half = new Fraction(1,2)
+	Fraction one_half = new Fraction(1,2);
 ```
 It will be similar on doing :
 
@@ -73,7 +73,18 @@ is available.
 
 According to its implementation, we can find the expression of the sequence in the [SquareRoots](src/main/java/dev/razafindratelo/sequences/SquareRoot.java)`.sq_n` method.
 
-The mathematical expression of this sequence is :
+The mathematical expression of this sequence is the following.
+
+But first let's define what I called by the smallest perfect square greater or equal than the number we want to compute the square root.
+
+<p>
+$$
+    \text{Let } m\inmathbb{N}^{*}. \\[8mm]
+    \text{Let } P \text{ be the set of all perfect square. }. \\[8mm]
+    \text{Therefore, let } c \text{ be the smallest perfect square greater or equal to } m.
+    \LeftRightlongarrow  \ c^{2} = min_{s\inP}{s - m}
+$$
+</p>
 
 <p align="center">
 	$$
