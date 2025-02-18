@@ -92,7 +92,9 @@ Then the final sequence that gives us the square root of *m* is the following :
 
 
 $$
-\therefore \quad \sqrt{m} = c\,-\lim_{n \longrightarrow +\infty} \sum_{k = 1}^{n}{\frac{1}{a_k}} = c-\sum_{n = 1}^{\infty}{\frac{1}{a_n}}
+\therefore \quad \sqrt{m} = c\,-\lim_{n \longrightarrow +\infty} \sum_{k = 1}^{n}{\frac{1}{a_k}} = c-\sum_{n = 1}^{\infty}{\frac{1}{a_n}} = \lim_{n \longrightarrow +\infty} x_n \\ \\
+Where\,\,(x_n)\,\,is\,\,defined\,\,by: \\
+x_n = c - \sum_{k = 1}^{n}{\frac{1}{a_k}}
 $$
 
 
