@@ -43,7 +43,7 @@ In mathematical world, the `Fraction.ZERO` is just :
 
 
 $$
-Let\,\,q\in\mathbb{N}^{*},\quad 0 = \frac{0}{q} = \frac{0}{1}
+Let \ \ q\in\mathbb{N}^{*},\quad 0 = \frac{0}{q} = \frac{0}{1}
 $$
 
 
@@ -51,7 +51,7 @@ And the `Fraction.ONE`is just :
 
 
 $$
-Let\,\,p\in\mathbb{N}^{*}, \quad 1 = \frac{p}{p} = \frac{1}{1}
+Let \ \ p\in\mathbb{N}^{*}, \quad 1 = \frac{p}{p} = \frac{1}{1}
 $$
 
 
@@ -59,7 +59,7 @@ The fraction `Fraction` acts exactly as a mathematical fraction does. So, all op
 
 
 $$
-(\mathbb{Q}, +, \,\cdot\,)
+(\mathbb{Q}, +, \ \cdot \ )
 $$
 
 
@@ -87,13 +87,12 @@ $$
 <p>
 	$$
 	\text{Now, let } c \text{ be the smallest perfect square greater or equal to } m
-    	\Longleftrightarrow  \ c^{2} = \min_{s\in P} {\vert s - m\vert}
+    	\Longleftrightarrow  \ c^{2} = \min_{s\in P, s \geq m} { s - m}
 	$$
 
 
 <p align="center">
 	$$
-		\text{let } m\in\mathbb{N}^{*} \text{ and } c^{2}\in\mathbb{N}^{*} \text{ be the mininum perfect square root greater or equal than }m. \\[8mm]
 		\text{Let $(a_n)_{n\in\mathbb{N}^{*}}$ be a sequence defined by the following recursion : } \qquad
 	$$
 </p>
