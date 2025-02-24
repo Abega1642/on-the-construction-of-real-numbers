@@ -1,7 +1,6 @@
 package dev.razafindratelo.tools;
 
-import dev.razafindratelo.set.Q;
-import dev.razafindratelo.set.Z;
+import dev.razafindratelo.utils.EuclideanUtils;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -14,12 +13,17 @@ import java.util.Random;
 @Data
 @ToString
 @EqualsAndHashCode
-public class Fraction implements Tool, Q {
+public class Fraction {
     private BigInteger numerator;
     private BigInteger denominator;
     public static Fraction ZERO = new Fraction(0, 1);
     public static Fraction ONE = new Fraction(1, 1);
 
+    /**
+     *
+     *  ==========================  FRACTION CONSTRUCTORS ==========================
+     *
+     */
 
     public Fraction(long numerator, long denominator) {
         if (denominator == 0) {
@@ -55,6 +59,13 @@ public class Fraction implements Tool, Q {
         return new Fraction(num, den);
     }
 
+
+    /**
+     *
+     *  ==========================  FRACTION METHODS ==========================
+     *
+     */
+
     public BigDecimal getValue() {
         return new BigDecimal(this.numerator).divide(new BigDecimal(this.denominator), new MathContext(10_002));
     }
@@ -86,22 +97,17 @@ public class Fraction implements Tool, Q {
         this.normalize();
     }
 
-    @Override
     public Fraction add(Fraction frac) {
-        BigInteger denGCM = Z.gcm(denominator, frac.getDenominator());
-
+        BigInteger denGCM = EuclideanUtils.gcm(denominator, frac.getDenominator());
 
         BigInteger leftSideMult = denGCM.divide(this.denominator);
         BigInteger rightSideMult = denGCM.divide(frac.getDenominator());
-
-
 
         this.denominator = denominator.multiply(leftSideMult);
         this.numerator = numerator.multiply(leftSideMult);
 
         frac.setDenominator(frac.getDenominator().multiply(rightSideMult));
         frac.setNumerator(frac.getNumerator().multiply(rightSideMult));
-
 
         var added = new Fraction(
                 this.numerator.add(frac.getNumerator()),
@@ -120,7 +126,6 @@ public class Fraction implements Tool, Q {
         return added;
     }
 
-    @Override
     public Fraction multiply(Fraction f) {
         Fraction product = new Fraction(
                 this.numerator.multiply(f.getNumerator()),
@@ -140,7 +145,6 @@ public class Fraction implements Tool, Q {
         return multiplied;
     }
 
-    @Override
     public Fraction inverse() {
         BigInteger num = this.denominator;
         BigInteger den = this.numerator;
@@ -148,12 +152,10 @@ public class Fraction implements Tool, Q {
         return new Fraction(num, den);
     }
 
-    @Override
     public Fraction divide(Fraction f) {
         return this.multiply(f.inverse());
     }
 
-    @Override
     public Fraction opposite() {
         this.simplify();
 
@@ -163,7 +165,6 @@ public class Fraction implements Tool, Q {
         );
     }
 
-    @Override
     public Fraction abs() {
         this.normalize();
 
@@ -178,32 +179,23 @@ public class Fraction implements Tool, Q {
     }
 
     public Fraction toThePowerOf(long n) {
-        this.simplify();
-
         if (n == 0) {
-            return new Fraction(1, 1);
-
-        } else if (n >= 1) {
-            Fraction result = this;
-
-            for (long i = 1; i < n; i++) {
-                result = result.multiply(this);
-            }
-
-            result.simplify();
-
-            return result;
-
-        } else {
-            Fraction result = this.inverse();
-            for (long i = 1; i < -n; i++) {
-                result = result.multiply(this.inverse());
-            }
-            result.simplify();
-
-            return result;
+            return Fraction.ONE;
         }
+        
+        long absValueOfN = Math.abs(n);
+        Fraction base = (n < 0) ? this.inverse() : this;
+        Fraction result = Fraction.ONE;
+
+        while (absValueOfN > 0) {
+            if (absValueOfN % 2 == 1) {
+                result = result.multiply(base);
+            }
+            base = base.multiply(base);
+            absValueOfN /= 2;
+        }
+
+        result.simplify();
+        return result;
     }
-
-
 }
