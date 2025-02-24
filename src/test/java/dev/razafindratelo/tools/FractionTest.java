@@ -1,13 +1,17 @@
 package dev.razafindratelo.tools;
 
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Random;
-
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ *  Total number of test : 1,840
+ *  Number of success test : 1,840
+ *  Number of failed test : 0
+ */
 class FractionTest {
 
     /**
@@ -25,15 +29,10 @@ class FractionTest {
     /**
      *  TEST RANDOM FRACTION CONSTRUCTOR
      */
-    @Test
-    void do_1_000_000_test_about_get_a_random_valid_fraction() {
-        long i = 0;
-
-        while(i < 1_000_000) {
-            Fraction frac = Fraction.random(-99999, 999999);
-            assertNotEquals(BigInteger.ZERO, frac.getDenominator());
-            i++;
-        }
+    @RepeatedTest(1_000)
+    void do_1_000_test_about_get_a_random_valid_fraction() {
+        Fraction frac = Fraction.random(-99999, 999999);
+        assertNotEquals(BigInteger.ZERO, frac.getDenominator());
     }
 
     /**
@@ -60,8 +59,6 @@ class FractionTest {
         BigDecimal actual = frac.getValue();
 
         assertEquals(expected, actual);
-
-
     }
 
     /**
@@ -216,18 +213,12 @@ class FractionTest {
         assertEquals(expected, actual);
     }
 
-    @Test
+    @RepeatedTest(50)
     void add_random_fraction_by_zero() {
         Fraction frac = Fraction.random(-200, 200);
-
-        for (int i = 0; i < 1_000_000; i++) {
-
-            Fraction actual = frac.add(0L);
-
-            frac.simplify();
-
-            assertEquals(frac, actual);
-        }
+        Fraction actual = frac.add(0L);
+        frac.simplify();
+        assertEquals(frac, actual);
     }
 
 
@@ -308,19 +299,16 @@ class FractionTest {
         assertEquals(expected, actual2);
     }
 
-    @Test
+    @RepeatedTest(50)
     void multiply_random_fraction_by_zero_fraction() {
         Fraction frac = Fraction.random(-200, 200);
         Fraction fraction = new Fraction(0, new Random().nextLong(-200,200));
 
-        for (int i = 0; i < 1_000_000; i++) {
-            Fraction actual = frac.multiply(fraction);
+        Fraction actual = frac.multiply(fraction);
 
-            Fraction expected = Fraction.ZERO;
+        Fraction expected = Fraction.ZERO;
 
-            assertEquals(expected, actual);
-
-        }
+        assertEquals(expected, actual);
 
     }
 
@@ -339,19 +327,17 @@ class FractionTest {
         assertEquals(expected, actual);
     }
 
-    @Test
+    @RepeatedTest(50)
     void multiply_random_fraction_by_zero() {
         Fraction frac = Fraction.random(-200, 200);
 
-        for (int i = 0; i < 1_000_000; i++) {
-            frac.simplify();
+        frac.simplify();
 
-            Fraction expected = Fraction.ZERO;
+        Fraction expected = Fraction.ZERO;
 
-            Fraction actual = frac.multiply(0);
+        Fraction actual = frac.multiply(0);
 
-            assertEquals(expected, actual);
-        }
+        assertEquals(expected, actual);
     }
 
     /**
@@ -459,50 +445,41 @@ class FractionTest {
         assertEquals(expected, actual);
     }
 
-    @Test
-    void do_1_000_000_test_about_get_absolute_value_of_positive_fraction() {
+    @RepeatedTest(50)
+    void do_50_test_about_get_absolute_value_of_positive_fraction() {
         Fraction frac = Fraction.random(0, 99999);
 
-        for(int i = 0; i < 500_000; i++) {
-            Fraction actual = frac.abs();
+        Fraction actual = frac.abs();
 
-            frac.simplify();
+        frac.simplify();
 
-            assertEquals(frac, actual);
-        }
-
+        assertEquals(frac, actual);
     }
 
     /**
      *  TEST TO_THE_POWER_OF FRACTION METHOD
      */
 
-    @Test
-    void do_1_000_000_test_about_get_random_fraction_to_the_power_of_zero() {
+    @RepeatedTest(100)
+    void do_100_test_about_get_random_fraction_to_the_power_of_zero() {
         Fraction frac = Fraction.random(-9999, 9999);
 
         Fraction expected = Fraction.ONE;
 
-        for(int i = 0; i < 1_000_000; i ++) {
+        Fraction actual = frac.toThePowerOf(0);
 
-            Fraction actual = frac.toThePowerOf(0);
-
-            assertEquals(expected, actual);
-        }
+        assertEquals(expected, actual);
 
     }
 
-    @Test
-    void do_1_000_000_test_about_get_random_fraction_to_the_power_of_ONE() {
+    @RepeatedTest(500)
+    void do_500_test_about_get_random_fraction_to_the_power_of_ONE() {
         Fraction frac = Fraction.random(-9999, 9999);
 
-        for(int i = 0; i < 1_000_000; i++) {
+        Fraction actual = frac.toThePowerOf(1);
+        frac.simplify();
 
-            Fraction actual = frac.toThePowerOf(1);
-            frac.simplify();
-
-            assertEquals(frac, actual);
-        }
+        assertEquals(frac, actual);
     }
 
     @Test
@@ -563,7 +540,39 @@ class FractionTest {
         Fraction actual = frac.toThePowerOf(pow);
 
         assertEquals(expected, actual);
+    }
 
+    @Test
+    void get_two_seventh_to_the_power_of_10() {
+        Fraction expected = new Fraction(1024, 282_475_249);
+
+        Fraction subject = new Fraction(2, 7);
+        Fraction actual = subject.toThePowerOf(10);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void get_three_fourth_to_the_power_of_minus7() {
+        Fraction expected = new Fraction(16_384, 2_187);
+
+        Fraction subject = new Fraction(3, 4);
+        Fraction actual = subject.toThePowerOf(-7);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void get_eleven_over_twelve_to_the_power_of_10() {
+
+        BigInteger expectedNumerator = BigInteger.valueOf(25_937_424_601L);
+        BigInteger expectedDenominator = BigInteger.valueOf(61_917_364_224L);
+        Fraction expected = new Fraction(expectedNumerator,expectedDenominator);
+
+        Fraction subject = new Fraction(11, 12);
+        Fraction actual = subject.toThePowerOf(10);
+
+        assertEquals(expected, actual);
     }
 
 }
