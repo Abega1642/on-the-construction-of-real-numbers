@@ -5,11 +5,11 @@ import lombok.ToString;
 
 @Getter
 @ToString
-public class Euclidian {
+public class EuclideanDivision {
     private final long quotient;
     private final long reminder;
 
-    public Euclidian (long a, long b) {
+    public EuclideanDivision(long a, long b) {
 
         if (b == 0) {
             this.quotient = 0;
