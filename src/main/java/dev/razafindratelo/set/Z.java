@@ -10,9 +10,9 @@ import java.math.BigInteger;
 public class Z implements R {
 
     public static long gcd(long a, long b) {
-        var euclidian = Euclidian.division(a, b);
-        if (euclidian.get("r") != 0) {
-            return gcd(b, euclidian.get("r"));
+        Euclidian euclidian = new Euclidian(a, b);
+        if (euclidian.getReminder() != 0) {
+            return gcd(b, euclidian.getReminder());
         } else {
             return b;
         }

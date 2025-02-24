@@ -1,29 +1,25 @@
 package dev.razafindratelo.utils;
 
-import java.util.Map;
+import lombok.Getter;
+import lombok.ToString;
 
+@Getter
+@ToString
 public class Euclidian {
-    public static Map<String, Long> division (long a, long b) {
-        long q;
-        long r;
+    private final long quotient;
+    private final long reminder;
 
-        if (a == 0 && b == 0) {
-            return Map.of("a", 0L, "b", 0L, "q", 0L, "r", 0L);
-        }
+    public Euclidian (long a, long b) {
+
         if (b == 0) {
-            return Map.of("a", a, "b", b, "q", 0L, "r", a);
-        }
-
-        if (a < 0) {
-            q = (a / b) < 0 ? (a / b) - 1 : (a / b) + 1;
+            this.quotient = 0;
+            this.reminder = a;
 
         } else {
-            q = a / b;
+            this.quotient= (b > 0) ?
+                    (long) Math.floor((double) a / b) : (long) Math.ceil((double) a / b);
+
+            this.reminder = a - (b * quotient);
         }
-
-        r = a - b* q;
-
-        return Map.of("a", a, "b", b, "q", q, "r", r);
     }
-
 }
