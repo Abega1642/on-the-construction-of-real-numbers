@@ -1,75 +1,169 @@
 package dev.razafindratelo.utils;
 
 import org.junit.jupiter.api.Test;
-import java.util.Map;
+import java.util.Random;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EuclidianTest {
 
     @Test
     void euclidian_division_of_zero_and_zero() {
-        Map<String, Long> expected = Map.of("a", 0L, "b", 0L, "q", 0L, "r", 0L);
+        long expectedQuotient = 0;
+        long expectedReminder = 0;
 
-        var actual = Euclidian.division(0, 0);
+        Euclidian subject = new Euclidian(0, 0);
+        long actualQuotient = subject.getQuotient();
+        long actualReminder = subject.getReminder();
 
-        assertEquals(expected, actual);
+        assertEquals(expectedQuotient, actualQuotient);
+        assertEquals(expectedReminder, actualReminder);
     }
 
     @Test
     void euclidian_division_of_a_non_zero_by_zero() {
-        Map<String, Long> expected = Map.of("a", 4L, "b", 0L, "q", 0L, "r", 4L);
+        long expectedQuotient = 0;
+        long expectedReminder = new Random().nextLong();
 
-        var actual = Euclidian.division(4, 0);
+        Euclidian subject = new Euclidian(expectedReminder, 0);
+        long actualQuotient = subject.getQuotient();
+        long actualReminder = subject.getReminder();
 
-        assertEquals(expected, actual);
+        assertEquals(expectedQuotient, actualQuotient);
+        assertEquals(expectedReminder, actualReminder);
     }
 
     @Test
-    void euclidian_division_of_a_zero_by_non_zero() {
-        Map<String, Long> expected = Map.of("a", 0L, "b", 21L, "q", 0L, "r", 0L);
+    void euclidian_division_of_a_zero_by_random_integer() {
+        long expectedQuotient = 0;
+        long expectedReminder = 0;
 
-        var actual = Euclidian.division(0, 21);
+        long randomValueForB = new Random().nextLong();
+        Euclidian subject = new Euclidian(0, randomValueForB);
+        long actualQuotient = subject.getQuotient();
+        long actualReminder = subject.getReminder();
 
-        assertEquals(expected, actual);
+        assertEquals(expectedQuotient, actualQuotient);
+        assertEquals(expectedReminder, actualReminder);
     }
 
     @Test
-    void euclidian_division_of_non_zero_by_non_zero() {
-        Map<String, Long> expected_1 = Map.of("a", 54L, "b", 23L, "q", 2L, "r", 8L);
-        Map<String, Long> expected_2 = Map.of("a", 23L, "b", 54L, "q", 0L, "r", 23L);
-
-        var actual_1 = Euclidian.division(54, 23);
-        var actual_2 = Euclidian.division(23, 54);
+    void euclidian_division_of_54_by_23() {
+        long expectedQuotient = 2;
+        long expectedReminder = 8;
 
 
-        assertEquals(expected_1, actual_1);
-        assertEquals(expected_2, actual_2);
+        Euclidian subject = new Euclidian(54, 23);
+        long actualQuotient = subject.getQuotient();
+        long actualReminder = subject.getReminder();
+
+
+        assertEquals(expectedQuotient, actualQuotient);
+        assertEquals(expectedReminder, actualReminder);
+
     }
 
     @Test
-    void euclidian_division_of_negative_number() {
-        Map<String, Long> expected = Map.of("a", -23L, "b", 14L, "q", -2L, "r", 5L);
+    void euclidian_division_of_23_by_54() {
+        long expectedQuotient = 0;
+        long expectedReminder = 23;
 
-        var actual = Euclidian.division(-23, 14);
+        Euclidian subject = new Euclidian(23, 54);
+        long actualQuotient = subject.getQuotient();
+        long actualReminder = subject.getReminder();
 
-        assertEquals(expected, actual);
+        assertEquals(expectedQuotient, actualQuotient);
+        assertEquals(expectedReminder, actualReminder);
+
     }
 
     @Test
-    void euclidian_division_of_negative_number_2() {
-        Map<String, Long> expected = Map.of("a", -23L, "b", -14L, "q", 2L, "r", 5L);
+    void euclidian_division_of_minus23_by_14() {
+        long expectedQuotient = -2;
+        long expectedReminder = 5;
 
-        var actual = Euclidian.division(-23, -14);
+        Euclidian subject = new Euclidian(-23, 14);
+        long actualQuotient = subject.getQuotient();
+        long actualReminder = subject.getReminder();
 
-        assertEquals(expected, actual);
+        assertEquals(expectedQuotient, actualQuotient);
+        assertEquals(expectedReminder, actualReminder);
     }
 
     @Test
-    void euclidian_division_of_negative_number_3() {
-        Map<String, Long> expected = Map.of("a", 23L, "b", -14L, "q", -1L, "r", 9L);
+    void euclidian_division_of_minus54_by_23() {
+        long expectedQuotient = -2;
+        long expectedReminder = 8;
 
-        var actual = Euclidian.division(23, -14);
+        Euclidian subject = new Euclidian(54, -23);
+        long actualQuotient = subject.getQuotient();
+        long actualReminder = subject.getReminder();
 
-        assertEquals(expected, actual);
+        assertEquals(expectedQuotient, actualQuotient);
+        assertEquals(expectedReminder, actualReminder);
+    }
+
+    @Test
+    void euclidian_division_of_minus23_and_minus14() {
+        long expectedQuotient = 2;
+        long expectedReminder = 5;
+
+        Euclidian subject = new Euclidian(-23, -14);
+        long actualQuotient = subject.getQuotient();
+        long actualReminder = subject.getReminder();
+
+        assertEquals(expectedQuotient, actualQuotient);
+        assertEquals(expectedReminder, actualReminder);
+    }
+
+    @Test
+    void euclidian_division_of_23_and_minus14() {
+        long expectedQuotient = -1;
+        long expectedReminder = 9;
+
+        Euclidian subject = new Euclidian(23, -14);
+        long actualQuotient = subject.getQuotient();
+        long actualReminder = subject.getReminder();
+
+        assertEquals(expectedQuotient, actualQuotient);
+        assertEquals(expectedReminder, actualReminder);
+    }
+
+    @Test
+    void euclidian_division_of_minus11_by_2() {
+        long expectedQuotient = -6;
+        long expectedReminder = 1;
+
+        Euclidian subject = new Euclidian(-11, 2);
+        long actualQuotient = subject.getQuotient();
+        long actualReminder = subject.getReminder();
+
+        assertEquals(expectedQuotient, actualQuotient);
+        assertEquals(expectedReminder, actualReminder);
+    }
+
+    @Test
+    void euclidian_division_of_minus11_by_minus2() {
+        long expectedQuotient = 6;
+        long expectedReminder = 1;
+
+        Euclidian subject = new Euclidian(-11, -2);
+        long actualQuotient = subject.getQuotient();
+        long actualReminder = subject.getReminder();
+
+        assertEquals(expectedQuotient, actualQuotient);
+        assertEquals(expectedReminder, actualReminder);
+    }
+
+    @Test
+    void euclidian_division_of_11_by_minus2() {
+        long expectedQuotient = -5;
+        long expectedReminder = 1;
+
+        Euclidian subject = new Euclidian(11, -2);
+        long actualQuotient = subject.getQuotient();
+        long actualReminder = subject.getReminder();
+
+        assertEquals(expectedQuotient, actualQuotient);
+        assertEquals(expectedReminder, actualReminder);
     }
 }
