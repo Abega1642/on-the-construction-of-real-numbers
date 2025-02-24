@@ -4,14 +4,14 @@ import org.junit.jupiter.api.Test;
 import java.util.Random;
 import static org.junit.jupiter.api.Assertions.*;
 
-class EuclidianTest {
+class EuclideanDivisionTest {
 
     @Test
     void euclidian_division_of_zero_and_zero() {
         long expectedQuotient = 0;
         long expectedReminder = 0;
 
-        Euclidian subject = new Euclidian(0, 0);
+        EuclideanDivision subject = new EuclideanDivision(0, 0);
         long actualQuotient = subject.getQuotient();
         long actualReminder = subject.getReminder();
 
@@ -24,7 +24,7 @@ class EuclidianTest {
         long expectedQuotient = 0;
         long expectedReminder = new Random().nextLong();
 
-        Euclidian subject = new Euclidian(expectedReminder, 0);
+        EuclideanDivision subject = new EuclideanDivision(expectedReminder, 0);
         long actualQuotient = subject.getQuotient();
         long actualReminder = subject.getReminder();
 
@@ -38,7 +38,7 @@ class EuclidianTest {
         long expectedReminder = 0;
 
         long randomValueForB = new Random().nextLong();
-        Euclidian subject = new Euclidian(0, randomValueForB);
+        EuclideanDivision subject = new EuclideanDivision(0, randomValueForB);
         long actualQuotient = subject.getQuotient();
         long actualReminder = subject.getReminder();
 
@@ -52,7 +52,7 @@ class EuclidianTest {
         long expectedReminder = 8;
 
 
-        Euclidian subject = new Euclidian(54, 23);
+        EuclideanDivision subject = new EuclideanDivision(54, 23);
         long actualQuotient = subject.getQuotient();
         long actualReminder = subject.getReminder();
 
@@ -67,7 +67,7 @@ class EuclidianTest {
         long expectedQuotient = 0;
         long expectedReminder = 23;
 
-        Euclidian subject = new Euclidian(23, 54);
+        EuclideanDivision subject = new EuclideanDivision(23, 54);
         long actualQuotient = subject.getQuotient();
         long actualReminder = subject.getReminder();
 
@@ -81,7 +81,7 @@ class EuclidianTest {
         long expectedQuotient = -2;
         long expectedReminder = 5;
 
-        Euclidian subject = new Euclidian(-23, 14);
+        EuclideanDivision subject = new EuclideanDivision(-23, 14);
         long actualQuotient = subject.getQuotient();
         long actualReminder = subject.getReminder();
 
@@ -94,7 +94,7 @@ class EuclidianTest {
         long expectedQuotient = -2;
         long expectedReminder = 8;
 
-        Euclidian subject = new Euclidian(54, -23);
+        EuclideanDivision subject = new EuclideanDivision(54, -23);
         long actualQuotient = subject.getQuotient();
         long actualReminder = subject.getReminder();
 
@@ -107,7 +107,7 @@ class EuclidianTest {
         long expectedQuotient = 2;
         long expectedReminder = 5;
 
-        Euclidian subject = new Euclidian(-23, -14);
+        EuclideanDivision subject = new EuclideanDivision(-23, -14);
         long actualQuotient = subject.getQuotient();
         long actualReminder = subject.getReminder();
 
@@ -120,7 +120,7 @@ class EuclidianTest {
         long expectedQuotient = -1;
         long expectedReminder = 9;
 
-        Euclidian subject = new Euclidian(23, -14);
+        EuclideanDivision subject = new EuclideanDivision(23, -14);
         long actualQuotient = subject.getQuotient();
         long actualReminder = subject.getReminder();
 
@@ -133,7 +133,7 @@ class EuclidianTest {
         long expectedQuotient = -6;
         long expectedReminder = 1;
 
-        Euclidian subject = new Euclidian(-11, 2);
+        EuclideanDivision subject = new EuclideanDivision(-11, 2);
         long actualQuotient = subject.getQuotient();
         long actualReminder = subject.getReminder();
 
@@ -146,7 +146,7 @@ class EuclidianTest {
         long expectedQuotient = 6;
         long expectedReminder = 1;
 
-        Euclidian subject = new Euclidian(-11, -2);
+        EuclideanDivision subject = new EuclideanDivision(-11, -2);
         long actualQuotient = subject.getQuotient();
         long actualReminder = subject.getReminder();
 
@@ -159,7 +159,7 @@ class EuclidianTest {
         long expectedQuotient = -5;
         long expectedReminder = 1;
 
-        Euclidian subject = new Euclidian(11, -2);
+        EuclideanDivision subject = new EuclideanDivision(11, -2);
         long actualQuotient = subject.getQuotient();
         long actualReminder = subject.getReminder();
 
