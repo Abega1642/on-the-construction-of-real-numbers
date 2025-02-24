@@ -5,13 +5,17 @@ import java.math.BigInteger;
 public class EuclideanUtils {
 
     public static long gcd(long a, long b) {
-        EuclideanDivision euclideanDivision = new EuclideanDivision(a, b);
-        if (euclideanDivision.getReminder() != 0) {
-            return gcd(b, euclideanDivision.getReminder());
-        } else {
-            return b;
-        }
-    }
+		a = Math.abs(a);
+		b = Math.abs(b);
+
+		while (b != 0) {
+		    long temp = b;
+		    b = a % b;
+		    a = temp;
+		}
+
+		return a;
+	}
 
     public static long gcm(long a, long b) {
         return (a * b) / gcd(a, b);

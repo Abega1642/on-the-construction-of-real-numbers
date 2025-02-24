@@ -1,52 +1,65 @@
 package dev.razafindratelo.tools;
 
-import dev.razafindratelo.utils.EuclideanUtils;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.MathContext;
-import java.util.Objects;
 import java.util.Random;
 
 @Data
 @ToString
 @EqualsAndHashCode
 public class Fraction {
+    public static Fraction ZERO = Fraction.valueOf(0, 1);
+    public static Fraction ONE = Fraction.valueOf(1, 1);
+
     private BigInteger numerator;
     private BigInteger denominator;
-    public static Fraction ZERO = new Fraction(0, 1);
-    public static Fraction ONE = new Fraction(1, 1);
 
-    /**
-     *
-     *  ==========================  FRACTION CONSTRUCTORS ==========================
-     *
-     */
-
-    public Fraction(long numerator, long denominator) {
-        if (denominator == 0) {
-            throw new IllegalArgumentException("Denominator must be non-zero");
-        }
-        this.numerator = BigInteger.valueOf(numerator);
-        this.denominator = BigInteger.valueOf(denominator);
-    }
 
     public Fraction(BigInteger numerator, BigInteger denominator) {
-        if (Objects.equals(denominator, BigInteger.ZERO)) {
+        if (denominator.equals(BigInteger.ZERO)) {
             throw new IllegalArgumentException("Denominator must be non-zero");
         }
+
+        BigInteger gcd = numerator.gcd(denominator);
+        numerator = numerator.divide(gcd);
+        denominator = denominator.divide(gcd);
+
+        if (denominator.signum() < 0) {
+            numerator = numerator.negate();
+            denominator = denominator.negate();
+        }
+
         this.numerator = numerator;
         this.denominator = denominator;
     }
 
-    public Fraction(long n) {
-        this.numerator = BigInteger.valueOf(n);
-        this.denominator = BigInteger.ONE;
+    /**
+     *
+     *  ==========================  FRACTION STATIC FACTORY ==========================
+     *
+     */
+
+    public static Fraction valueOf(long numerator, long denominator) {
+        if (denominator == 0) {
+            throw new IllegalArgumentException("Denominator must be non-zero");
+        }
+        BigInteger num = BigInteger.valueOf(numerator);
+        BigInteger den = BigInteger.valueOf(denominator);
+        return new Fraction(num, den);
     }
 
-    public static Fraction random(long from, long to) {
+    public static Fraction valueOf(long n) {
+        BigInteger num = BigInteger.valueOf(n);
+        BigInteger den = BigInteger.ONE;
+
+        return new Fraction(num, den);
+    }
+
+    public static Fraction getRandom(long from, long to) {
         Random random = new Random();
 
         BigInteger num = BigInteger.valueOf(random.nextLong(from, to + 1 ));
@@ -59,33 +72,15 @@ public class Fraction {
         return new Fraction(num, den);
     }
 
-
     /**
      *
-     *  ==========================  FRACTION METHODS ==========================
+     *  ==========================  FRACTION METHODS  ==========================
      *
      */
 
     public BigDecimal getValue() {
-        return new BigDecimal(this.numerator).divide(new BigDecimal(this.denominator), new MathContext(10_002));
-    }
-
-    public void normalize() {
-        BigInteger ZERO = BigInteger.ZERO;
-        BigInteger num = numerator;
-        BigInteger den = denominator;
-
-        boolean isDenominatorNegative = den.max(ZERO).equals(ZERO);
-        boolean isNumeratorNegative = num.max(ZERO).equals(ZERO);
-
-        if (isNumeratorNegative && isDenominatorNegative) {
-            this.numerator = num.abs();
-            this.denominator = den.abs();
-
-        } else if (!isNumeratorNegative && isDenominatorNegative) {
-            this.numerator = num.multiply(BigInteger.valueOf(-1));
-            this.denominator = den.abs();
-        }
+        return new BigDecimal(this.numerator)
+                .divide(new BigDecimal(this.denominator), new MathContext(20_002));
     }
 
     public void simplify() {
@@ -93,10 +88,15 @@ public class Fraction {
 
         numerator = numerator.divide(gcd);
         denominator = denominator.divide(gcd);
-
-        this.normalize();
     }
 
+    public Fraction add(Fraction f) {
+        BigInteger newNumerator = this.numerator.multiply(f.denominator)
+                .add(f.numerator.multiply(this.denominator));
+        BigInteger newDenominator = this.denominator.multiply(f.denominator);
+        return new Fraction(newNumerator, newDenominator);
+    }
+    /*
     public Fraction add(Fraction frac) {
         BigInteger denGCM = EuclideanUtils.gcm(denominator, frac.getDenominator());
 
@@ -116,16 +116,24 @@ public class Fraction {
         added.simplify();
 
         return added;
-    }
+    }*/
 
     public Fraction add(long n) {
-        Fraction frac = new Fraction(n);
+        Fraction frac = Fraction.valueOf(n);
         Fraction added = this.add(frac);
 
         added.simplify();
         return added;
     }
 
+    public Fraction multiply(Fraction f) {
+        return new Fraction(
+                this.numerator.multiply(f.numerator),
+                this.denominator.multiply(f.denominator)
+        );
+    }
+
+    /*
     public Fraction multiply(Fraction f) {
         Fraction product = new Fraction(
                 this.numerator.multiply(f.getNumerator()),
@@ -135,10 +143,10 @@ public class Fraction {
         product.simplify();
 
         return product;
-    }
+    }*/
 
     public Fraction multiply(long n) {
-        Fraction frac = new Fraction(n);
+        Fraction frac = Fraction.valueOf(n);
         Fraction multiplied = this.multiply(frac);
 
         multiplied.simplify();
@@ -146,10 +154,7 @@ public class Fraction {
     }
 
     public Fraction inverse() {
-        BigInteger num = this.denominator;
-        BigInteger den = this.numerator;
-
-        return new Fraction(num, den);
+        return new Fraction(denominator, numerator);
     }
 
     public Fraction divide(Fraction f) {
@@ -157,25 +162,11 @@ public class Fraction {
     }
 
     public Fraction opposite() {
-        this.simplify();
-
-        return new Fraction(
-                this.numerator.multiply(BigInteger.valueOf(-1)),
-                this.denominator
-        );
+        return new Fraction(numerator.negate(), denominator);
     }
 
     public Fraction abs() {
-        this.normalize();
-
-        Fraction result = new Fraction(
-                this.numerator.max(BigInteger.ZERO).equals(BigInteger.ZERO) ?
-                        this.numerator.multiply(BigInteger.valueOf(-1)) : this.numerator,
-                this.denominator
-        );
-        result.simplify();
-
-        return result;
+        return new Fraction(numerator.abs(), denominator);
     }
 
     public Fraction toThePowerOf(long n) {

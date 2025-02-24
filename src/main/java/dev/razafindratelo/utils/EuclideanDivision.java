@@ -10,16 +10,7 @@ public class EuclideanDivision {
     private final long reminder;
 
     public EuclideanDivision(long a, long b) {
-
-        if (b == 0) {
-            this.quotient = 0;
-            this.reminder = a;
-
-        } else {
-            this.quotient= (b > 0) ?
-                    (long) Math.floor((double) a / b) : (long) Math.ceil((double) a / b);
-
-            this.reminder = a - (b * quotient);
-        }
-    }
+    	this.quotient = b == 0 ? 0 : a / b - (a % b < 0 ? Long.signum(b) : 0);
+    	this.reminder = b == 0 ? a : a % b + (a % b < 0 ? Math.abs(b) : 0);
+	}
 }
