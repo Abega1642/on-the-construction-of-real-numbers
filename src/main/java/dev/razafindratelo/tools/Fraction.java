@@ -44,9 +44,6 @@ public class Fraction {
      */
 
     public static Fraction valueOf(long numerator, long denominator) {
-        if (denominator == 0) {
-            throw new IllegalArgumentException("Denominator must be non-zero");
-        }
         BigInteger num = BigInteger.valueOf(numerator);
         BigInteger den = BigInteger.valueOf(denominator);
         return new Fraction(num, den);
@@ -55,7 +52,6 @@ public class Fraction {
     public static Fraction valueOf(long n) {
         BigInteger num = BigInteger.valueOf(n);
         BigInteger den = BigInteger.ONE;
-
         return new Fraction(num, den);
     }
 

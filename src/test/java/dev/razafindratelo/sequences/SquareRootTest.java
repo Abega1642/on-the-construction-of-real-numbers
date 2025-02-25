@@ -7,6 +7,11 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ *  Number of test = 8
+ *  Number of Success test = 8
+ *  Execution time = 22 min 49 sec for all test combined in one run
+ */
 class SquareRootTest {
 
     @Test
@@ -42,7 +47,6 @@ class SquareRootTest {
         MathContext precision = new MathContext(20_002);
         String actual = subject.sqrt(20).getValue(precision).toString().substring(0, 20_002);
 
-        System.out.println(actual);
         assertEquals(expected, actual);
 
     }

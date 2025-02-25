@@ -2,8 +2,6 @@ package dev.razafindratelo.sequences;
 
 import dev.razafindratelo.tools.Fraction;
 import lombok.Getter;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * This SquareRoot sequence is the sequence (x_n)
