@@ -4,14 +4,15 @@ import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.MathContext;
 import java.util.Random;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- *  Total number of test : 1,836
- *  Number of success test : 1,836
+ *  Total number of test : 1,834
+ *  Number of success test : 1,834
  *  Number of failed test : 0
- *  Executed time of all test : 1.834 s
+ *  Executed time of all test : 1,214 s
  */
 class FractionTest {
 
@@ -32,8 +33,8 @@ class FractionTest {
      */
     @RepeatedTest(1_000)
     void do_1_000_test_about_get_a_getRandom_valid_fraction() {
-        Fraction frac = Fraction.getRandom(-99999, 999999);
-        assertNotEquals(BigInteger.ZERO, frac.getDenominator());
+        Fraction actual = Fraction.getRandom(-99999, 999999);
+        assertNotEquals(BigInteger.ZERO, actual.getDenominator());
     }
 
     /**
@@ -42,117 +43,54 @@ class FractionTest {
 
     @Test
     void get_value_of_one_half_() {
-        Fraction frac = Fraction.valueOf(1, 2);
+        Fraction subject = Fraction.valueOf(1, 2);
 
         BigDecimal expected = BigDecimal.valueOf(0.5);
 
-        BigDecimal actual = frac.getValue();
+        MathContext precision = new MathContext(2);
+        BigDecimal actual = subject.getValue(precision);
 
         assertEquals(expected, actual);
     }
 
     @Test
     void get_value_of_one_fourth_() {
-        Fraction frac = Fraction.valueOf(1, 4);
+        Fraction subject = Fraction.valueOf(1, 4);
 
         BigDecimal expected = BigDecimal.valueOf(0.25);
-
-        BigDecimal actual = frac.getValue();
+        
+        MathContext precision = new MathContext(2);
+        BigDecimal actual = subject.getValue(precision);
 
         assertEquals(expected, actual);
     }
 
-    /**
-     *  TEST SIMPLIFY FRACTION METHOD
-     */
-
-    @Test
-    void simplify() {
-        Fraction expected = Fraction.valueOf(1, 2);
-        
-        Fraction subject = Fraction.valueOf(4, 8);
-        subject.simplify();
-
-        assertEquals(expected, subject);
-    }
-
-    @Test
-    void simplify_2() {
-        Fraction expected = Fraction.valueOf(3, 1);
-        
-        Fraction subject = Fraction.valueOf(21, 7);
-        subject.simplify();
-
-        assertEquals(expected, subject);
-    }
-
-    @Test
-    void simplify_AND_normalize() {
-        Fraction expected = Fraction.valueOf(1, 3);
-        
-        Fraction subject = Fraction.valueOf(-5, -15);
-        subject.simplify();
-
-        assertEquals(expected, subject);
-    }
-
-    @Test
-    void simplify_negative_denominator() {
-        Fraction expected = Fraction.valueOf(-1, 15);
-        
-        Fraction subject = Fraction.valueOf(1, -15);
-        subject.simplify();
-
-        assertEquals(expected, subject);
-    }
-
-//    /**
-//     *  TEST NORMALIZE FRACTION METHOD
-//     */
-//
-//    @Test
-//    void normalize_minus_1_over_minus_5() {
-//        Fraction expected = Fraction.valueOf(1, 5);
-//
-//        Fraction subject = Fraction.valueOf(-1, -5);
-//        subject.normalize();
-//
-//        assertEquals(expected, subject);
-//    }
-//
-//    @Test
-//    void normalize_zero_over_minus_one() {
-//        Fraction expected = Fraction.valueOf(0, 1);
-//
-//        Fraction subject = Fraction.valueOf(0, -1);
-//        subject.normalize();
-//
-//        assertEquals(expected, subject);
-//    }
-//
-//    @Test
-//    void normalize_1_over_minus_5() {
-//        Fraction expected = Fraction.valueOf(-1, 5);
-//
-//        Fraction subject = Fraction.valueOf(1, -5);
-//        subject.normalize();
-//
-//        assertEquals(expected, subject);
-//    }
-//
-//    @Test
-//    void normalize_a_normalized_fraction() {
-//        Fraction expected = Fraction.valueOf(1, 2);
-//
-//        Fraction subject = Fraction.valueOf(1, 2);
-//        subject.normalize();
-//
-//        assertEquals(expected, subject);
-//    }
 
     /**
      *  TEST ADD FRACTION METHOD
      */
+
+    @Test
+    void add_123456_over_654321_and_25852_over_85258() {
+        Fraction subject1 = Fraction.valueOf(123456, 654321);
+        Fraction subject2 = Fraction.valueOf(25852,85258);
+
+        Fraction actual = subject1.add(subject2);
+
+        Fraction expected = Fraction.valueOf(4573519690L, 9297683303L);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void add_987654321_over_123456789_and_321456987_over_789654123() {
+        Fraction subject1 = Fraction.valueOf(987654321L, 123456789L);
+        Fraction subject2 = Fraction.valueOf(321456987, 789654123);
+
+        Fraction actual = subject1.add(subject2);
+
+        Fraction expected = Fraction.valueOf(10118411778926546L, 1203557561064087L);
+    }
 
     @Test
     void add_1_half_and_3_fourteenth() {
@@ -223,7 +161,6 @@ class FractionTest {
         Fraction subject = Fraction.getRandom(-200, 200);
 
         Fraction actual = subject.add(0L);
-        subject.simplify();
 
         assertEquals(subject, actual);
     }
@@ -308,10 +245,10 @@ class FractionTest {
 
     @RepeatedTest(50)
     void multiply_getRandom_fraction_by_zero_fraction() {
-        Fraction frac = Fraction.getRandom(-200, 200);
+        Fraction subject = Fraction.getRandom(-200, 200);
         Fraction fraction = Fraction.valueOf(0, new Random().nextLong(-200,200));
 
-        Fraction actual = frac.multiply(fraction);
+        Fraction actual = subject.multiply(fraction);
 
         Fraction expected = Fraction.ZERO;
 
@@ -336,13 +273,11 @@ class FractionTest {
 
     @RepeatedTest(50)
     void multiply_getRandom_fraction_by_zero() {
-        Fraction frac = Fraction.getRandom(-200, 200);
-
-        frac.simplify();
+        Fraction subject = Fraction.getRandom(-200, 200);
 
         Fraction expected = Fraction.ZERO;
 
-        Fraction actual = frac.multiply(0);
+        Fraction actual = subject.multiply(0);
 
         assertEquals(expected, actual);
     }
@@ -395,33 +330,33 @@ class FractionTest {
      */
     @Test
     void opposite_of_minus_one_half() {
-        Fraction frac = Fraction.valueOf(1, 2);
+        Fraction subject = Fraction.valueOf(1, 2);
 
         Fraction expected = Fraction.valueOf(-1, 2);
 
-        Fraction actual = frac.opposite();
+        Fraction actual = subject.opposite();
 
         assertEquals(expected, actual);
     }
 
     @Test
     void opposite_of_two_over_minus_four() {
-        Fraction frac = Fraction.valueOf(2, -4);
+        Fraction subject = Fraction.valueOf(2, -4);
 
         Fraction expected = Fraction.valueOf(1, 2);
 
-        Fraction actual = frac.opposite();
+        Fraction actual = subject.opposite();
 
         assertEquals(expected, actual);
     }
 
     @Test
     void opposite_of_minus_three_over_minus_four() {
-        Fraction frac = Fraction.valueOf(-3, -4);
+        Fraction subject = Fraction.valueOf(-3, -4);
 
         Fraction expected = Fraction.valueOf(-3, 4);
 
-        Fraction actual = frac.opposite();
+        Fraction actual = subject.opposite();
 
         assertEquals(expected, actual);
     }
@@ -432,35 +367,33 @@ class FractionTest {
 
     @Test
     void get_absolute_value_of_one_over_minus_four() {
-        Fraction frac = Fraction.valueOf(1, -4);
+        Fraction subject = Fraction.valueOf(1, -4);
 
         Fraction expected = Fraction.valueOf(1, 4);
 
-        Fraction actual = frac.abs();
+        Fraction actual = subject.abs();
 
         assertEquals(expected, actual);
     }
 
     @Test
     void get_absolute_value_of_minus_four_over_minus_five() {
-        Fraction frac = Fraction.valueOf(-4, -5);
+        Fraction subject = Fraction.valueOf(-4, -5);
 
         Fraction expected = Fraction.valueOf(4, 5);
 
-        Fraction actual = frac.abs();
+        Fraction actual = subject.abs();
 
         assertEquals(expected, actual);
     }
 
     @RepeatedTest(50)
     void do_50_test_about_get_absolute_value_of_positive_fraction() {
-        Fraction frac = Fraction.getRandom(0, 99999);
+        Fraction subject = Fraction.getRandom(0, 99999);
 
-        Fraction actual = frac.abs();
+        Fraction actual = subject.abs();
 
-        frac.simplify();
-
-        assertEquals(frac, actual);
+        assertEquals(subject, actual);
     }
 
     /**
@@ -469,11 +402,11 @@ class FractionTest {
 
     @RepeatedTest(100)
     void do_100_test_about_get_getRandom_fraction_to_the_power_of_zero() {
-        Fraction frac = Fraction.getRandom(-9999, 9999);
+        Fraction subject = Fraction.getRandom(-9999, 9999);
 
         Fraction expected = Fraction.ONE;
 
-        Fraction actual = frac.toThePowerOf(0);
+        Fraction actual = subject.toThePowerOf(0);
 
         assertEquals(expected, actual);
 
@@ -481,70 +414,68 @@ class FractionTest {
 
     @RepeatedTest(500)
     void do_500_test_about_get_getRandom_fraction_to_the_power_of_ONE() {
-        Fraction frac = Fraction.getRandom(-9999, 9999);
+        Fraction subject = Fraction.getRandom(-9999, 9999);
 
-        Fraction actual = frac.toThePowerOf(1);
-        frac.simplify();
+        Fraction actual = subject.toThePowerOf(1);
 
-        assertEquals(frac, actual);
+        assertEquals(subject, actual);
     }
 
     @Test
     void get_one_half_to_the_power_of_4() {
-        Fraction frac = Fraction.valueOf(1, 2);
+        Fraction subject = Fraction.valueOf(1, 2);
 
         Fraction expected = Fraction.valueOf(1, 16);
 
-        Fraction actual = frac.toThePowerOf(4);
+        Fraction actual = subject.toThePowerOf(4);
 
         assertEquals(expected, actual);
     }
     @Test
     void get_two_eighth_to_the_power_of_2() {
-        Fraction frac = Fraction.valueOf(2, 4);
+        Fraction subject = Fraction.valueOf(2, 4);
 
         Fraction expected = Fraction.valueOf(1, 4);
 
-        Fraction actual = frac.toThePowerOf(2);
+        Fraction actual = subject.toThePowerOf(2);
 
         assertEquals(expected, actual);
     }
 
     @Test
     void get_one_half_to_the_power_of_minus_one() {
-        Fraction frac = Fraction.valueOf(1, 2);
+        Fraction subject = Fraction.valueOf(1, 2);
 
-        Fraction expected = frac.inverse();
+        Fraction expected = subject.inverse();
 
-        Fraction actual = frac.toThePowerOf(-1);
+        Fraction actual = subject.toThePowerOf(-1);
 
         assertEquals(expected, actual);
     }
 
     @Test
     void get_two_eighth_to_the_power_of_minus_two() {
-        Fraction frac = Fraction.valueOf(6, 24);
+        Fraction subject = Fraction.valueOf(6, 24);
 
         Fraction expected = Fraction.valueOf(16, 1);
 
-        Fraction actual = frac.toThePowerOf(-2);
+        Fraction actual = subject.toThePowerOf(-2);
 
         assertEquals(expected, actual);
     }
 
     @Test
     void get_random_positive_power_of_a_getRandom_fraction() {
-        Fraction frac = Fraction.getRandom(1, 20);
+        Fraction subject = Fraction.getRandom(1, 20);
 
         int pow = new Random().nextInt(0, 10);
 
-        BigInteger num = frac.getNumerator().pow(pow);
-        BigInteger den = frac.getDenominator().pow(pow);
+        BigInteger num = subject.getNumerator().pow(pow);
+        BigInteger den = subject.getDenominator().pow(pow);
 
         Fraction expected = new Fraction (num, den);
-        expected.simplify();
 
-        Fraction actual = frac.toThePowerOf(pow);
+        Fraction actual = subject.toThePowerOf(pow);
 
         assertEquals(expected, actual);
     }

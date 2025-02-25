@@ -61,18 +61,13 @@ public class SquareRootSub extends Sequence {
             long num = 2 * rootValue;
             long den = (rootValue * rootValue) - this.getN();
 
-            Fraction result = Fraction.valueOf(num, den);
-            result.simplify();
-
-            return result;
+            return Fraction.valueOf(num, den);
 
         } else if (k == 2) {
             long num = 4 * rootValue * ((rootValue * rootValue) + this.getN() );
             long den = ((rootValue * rootValue) - this.getN()) * ((rootValue * rootValue) - this.getN());
 
-            Fraction result = Fraction.valueOf(num, den);
-            result.simplify();
-            return result;
+            return Fraction.valueOf(num, den);
 
         } else {
             Fraction sq_k_1 = sqrtSub(k-1);
