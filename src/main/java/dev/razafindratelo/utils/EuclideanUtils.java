@@ -21,8 +21,4 @@ public class EuclideanUtils {
         return (a * b) / gcd(a, b);
     }
 
-    public static BigInteger gcm(BigInteger a, BigInteger b) {
-        return (a.multiply(b))
-                .divide(a.gcd(b));
-    }
 }
