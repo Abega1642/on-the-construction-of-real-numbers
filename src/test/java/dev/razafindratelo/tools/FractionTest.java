@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *  Total number of test : 1,834
  *  Number of success test : 1,834
  *  Number of failed test : 0
- *  Executed time of all test : 1,214 s
+ *  Execution time of all test : 1,214 s
  */
 class FractionTest {
 
