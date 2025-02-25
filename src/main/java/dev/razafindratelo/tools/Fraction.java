@@ -66,8 +66,8 @@ public class Fraction {
 
         BigInteger den = BigInteger.valueOf(random.nextLong(from, to + 1));
 
-        while (den.equals(BigInteger.ZERO)) {
-            den = BigInteger.valueOf(random.nextLong(from, to + 1));
+        if (den.equals(BigInteger.ZERO)) {
+            den = den.add(BigInteger.ONE);
         }
         return new Fraction(num, den);
     }
@@ -96,27 +96,6 @@ public class Fraction {
         BigInteger newDenominator = this.denominator.multiply(f.denominator);
         return new Fraction(newNumerator, newDenominator);
     }
-    /*
-    public Fraction add(Fraction frac) {
-        BigInteger denGCM = EuclideanUtils.gcm(denominator, frac.getDenominator());
-
-        BigInteger leftSideMult = denGCM.divide(this.denominator);
-        BigInteger rightSideMult = denGCM.divide(frac.getDenominator());
-
-        this.denominator = denominator.multiply(leftSideMult);
-        this.numerator = numerator.multiply(leftSideMult);
-
-        frac.setDenominator(frac.getDenominator().multiply(rightSideMult));
-        frac.setNumerator(frac.getNumerator().multiply(rightSideMult));
-
-        var added = new Fraction(
-                this.numerator.add(frac.getNumerator()),
-                denGCM
-        );
-        added.simplify();
-
-        return added;
-    }*/
 
     public Fraction add(long n) {
         Fraction frac = Fraction.valueOf(n);
@@ -132,18 +111,6 @@ public class Fraction {
                 this.denominator.multiply(f.denominator)
         );
     }
-
-    /*
-    public Fraction multiply(Fraction f) {
-        Fraction product = new Fraction(
-                this.numerator.multiply(f.getNumerator()),
-                this.denominator.multiply(f.getDenominator())
-        );
-
-        product.simplify();
-
-        return product;
-    }*/
 
     public Fraction multiply(long n) {
         Fraction frac = Fraction.valueOf(n);
