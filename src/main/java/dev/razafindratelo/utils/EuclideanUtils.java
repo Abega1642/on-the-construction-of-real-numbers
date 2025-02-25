@@ -1,7 +1,5 @@
 package dev.razafindratelo.utils;
 
-import java.math.BigInteger;
-
 public class EuclideanUtils {
 
     public static long gcd(long a, long b) {

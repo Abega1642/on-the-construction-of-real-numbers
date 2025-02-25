@@ -3,6 +3,9 @@ package dev.razafindratelo.utils;
 import lombok.Getter;
 import lombok.ToString;
 
+/**
+ *  NOTE : This EuclideanDivision class is not used yet but will be in future
+ */
 @Getter
 @ToString
 public class EuclideanDivision {
