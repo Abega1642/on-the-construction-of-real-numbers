@@ -16,28 +16,25 @@ public class SquareRoot extends Sequence {
     }
 
     public Fraction sqrt(long k) {
-        SquareRootSub sqSub = new SquareRootSub(this.getN());
+		SquareRootSub sqSub = new SquareRootSub(this.getN());
+		long perfectSquare = sqSub.getRootValue();
 
-        long perfectSquare = sqSub.getRootValue();
+		if (this.getN() == perfectSquare * perfectSquare) {
+		    return Fraction.valueOf(perfectSquare);
+		}
 
-        if (this.getN() ==  perfectSquare * perfectSquare) {
-            return Fraction.valueOf(perfectSquare);
-        }
-        if (k == 0) {
-            return Fraction.valueOf(sqSub.getRootValue());
-        } else {
-            Fraction val = Fraction.ZERO;
-            List<Fraction> values = new ArrayList<>();
+		if (k == 0) {
+		    return Fraction.valueOf(sqSub.getRootValue());
+		} else {
+		    Fraction val = Fraction.ZERO;
 
-            for (int i = 1; i <= k; i++) {
-                Fraction sqSub_i = sqSub.sqrtSub(i);
-                values.add(sqSub_i);
-            }
-            for (Fraction value : values) {
-                val = val.add(value.inverse().opposite());
-            }
+		    for (int i = 1; i <= k; i++) {
+		        Fraction sqSub_i = sqSub.sqrtSub(i);
+		        val = val.add(sqSub_i.inverse().opposite());
+		    }
 
-            return val.add(sqSub.getRootValue());
-        }
-    }
+		    return val.add(sqSub.getRootValue());
+		}
+	}
+
 }

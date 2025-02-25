@@ -63,11 +63,10 @@ public class Fraction {
         Random random = new Random();
 
         BigInteger num = BigInteger.valueOf(random.nextLong(from, to + 1 ));
-
         BigInteger den = BigInteger.valueOf(random.nextLong(from, to + 1));
 
         if (den.equals(BigInteger.ZERO)) {
-            den = den.add(BigInteger.ONE);
+            den = BigInteger.ONE;
         }
         return new Fraction(num, den);
     }
@@ -78,31 +77,22 @@ public class Fraction {
      *
      */
 
-    public BigDecimal getValue() {
-        return new BigDecimal(this.numerator)
-                .divide(new BigDecimal(this.denominator), new MathContext(20_002));
-    }
-
-    public void simplify() {
-        BigInteger gcd = numerator.gcd(denominator);
-
-        numerator = numerator.divide(gcd);
-        denominator = denominator.divide(gcd);
+    public BigDecimal getValue(MathContext precision) {
+        return new BigDecimal(this.numerator, precision)
+                .divide(new BigDecimal(this.denominator, precision), precision);
     }
 
     public Fraction add(Fraction f) {
         BigInteger newNumerator = this.numerator.multiply(f.denominator)
                 .add(f.numerator.multiply(this.denominator));
         BigInteger newDenominator = this.denominator.multiply(f.denominator);
+
         return new Fraction(newNumerator, newDenominator);
     }
 
     public Fraction add(long n) {
         Fraction frac = Fraction.valueOf(n);
-        Fraction added = this.add(frac);
-
-        added.simplify();
-        return added;
+        return  this.add(frac);
     }
 
     public Fraction multiply(Fraction f) {
@@ -114,10 +104,7 @@ public class Fraction {
 
     public Fraction multiply(long n) {
         Fraction frac = Fraction.valueOf(n);
-        Fraction multiplied = this.multiply(frac);
-
-        multiplied.simplify();
-        return multiplied;
+        return this.multiply(frac);
     }
 
     public Fraction inverse() {
@@ -153,7 +140,6 @@ public class Fraction {
             absValueOfN /= 2;
         }
 
-        result.simplify();
         return result;
     }
 }
