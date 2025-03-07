@@ -5,7 +5,7 @@
 
 ## Introduction
 
-This repository contains a *Java* program that explores a rational sequence designed to approximate square roots of positive integers.
+This repository contains a *Java* program (*JAVA 22*) that explores a rational sequence designed to approximate square roots of positive integers.
 
 The idea originated from a *topology of metric space* course, where I was challenged to find a rational sequence that converges to the square root of two. Later, inspired by Euler’s method for approximating square roots, I derived a general expression for computing square roots using a sequence.
 
@@ -26,7 +26,7 @@ So this program provides an object called _**Fraction**_ which represents fracti
 
 So by doing :
 ```java
-	Fraction one_half = new Fraction(1,2);
+	Fraction oneHalf = new Fraction(1,2);
 ```
 It will be similar on doing :
 
@@ -69,9 +69,10 @@ is available.
 
 ##	About the [*SquareRoots*](src/main/java/dev/razafindratelo/sequences/SquareRoot.java) :
 
-`SquareRoot`implements an interface called `Sequence`. This is the program where This repository focuses in.
+`SquareRoot`implements an abstract class called `Sequence` which is super class of all sequence that will be implemented in this program. This is the program where This repository focuses in.
 
-According to its implementation, we can find the expression of the sequence in the [SquareRoots](src/main/java/dev/razafindratelo/sequences/SquareRoot.java)`.sq_n` method.
+According to its implementation, we can find the expression of the sequence in the [SquareRoots](src/main/java/dev/razafindratelo/sequences/SquareRoot.java) the `kThValue` method.
+Which is naturaly the k-th value of the sequence at a given k. <p>$$ x_k $$</p>
 
 The mathematical expression of this sequence is the following :
 
