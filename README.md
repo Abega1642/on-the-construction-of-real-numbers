@@ -122,9 +122,9 @@ $$
 <p>
 	$$
 	\text{Now, let } c \text{ be the smallest perfect square greater or equal to } m
-    	\Longleftrightarrow  \ c^{2} = \min_{s\in P, s \geq m} { s - m}
+    	\Longleftrightarrow  \ c^{2} = \min_{s\in P, s \geq m} \lbrace s - m \rbrace
 	$$
-
+</p>
 
 <p align="center">
 	$$
@@ -148,8 +148,19 @@ Then the final sequence that gives us the square root of *m* is the following :
 
 <p>
 $$
-\therefore \quad \sqrt{m} = c-\lim_{n \longrightarrow +\infty} \sum_{k = 1}^{n}{\frac{1}{a_k}} = c-\sum_{n = 1}^{\infty}{\frac{1}{a_n}} = \lim_{n \longrightarrow +\infty} x_n \\
-\qquad \qquad Where \quad (x_n) \quad is \ defined \ by \ : \quad
+\therefore \quad \sqrt{m} = c-\lim_{n \longrightarrow +\infty} \sum_{k = 1}^{n}{\frac{1}{a_k}} 
+$$
+</p>
+
+<p>
+$$
+= c-\sum_{n = 1}^{\infty}{\frac{1}{a_n}} = \lim_{n \longrightarrow +\infty} x_n \\
+$$
+</p>
+
+<p>
+$$
+\text{Where } (x_n) \text{ is defined by : } \\
 x_n = c - \sum_{k = 1}^{n}{\frac{1}{a_k}}
 $$
 </p>
