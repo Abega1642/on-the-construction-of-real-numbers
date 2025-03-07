@@ -21,7 +21,7 @@ class SquareRootTest {
 
 
         MathContext precision = new MathContext(2);
-        String actual = subject.sqrt(1).getValue(precision).toString();
+        String actual = subject.kThValue(1).getValue(precision).toString();
 
         assertEquals(expected, actual);
     }
@@ -33,7 +33,7 @@ class SquareRootTest {
         String expected = ExtractData.extract("datas/sqrt_2.txt");
 
         MathContext precision = new MathContext(20_002);
-        String actual = subject.sqrt(20).getValue(precision).toString().substring(0, 20_002);
+        String actual = subject.kThValue(20).getValue(precision).toString().substring(0, 20_002);
 
         assertEquals(expected, actual);
 
@@ -45,7 +45,7 @@ class SquareRootTest {
         String expected = ExtractData.extract("datas/sqrt_3.txt");
 
         MathContext precision = new MathContext(20_002);
-        String actual = subject.sqrt(20).getValue(precision).toString().substring(0, 20_002);
+        String actual = subject.kThValue(20).getValue(precision).toString().substring(0, 20_002);
 
         assertEquals(expected, actual);
 
@@ -57,7 +57,7 @@ class SquareRootTest {
         String expected = "2";
 
         MathContext precision = new MathContext(2);
-        String actual = subject.sqrt(2).getValue(precision).toString();
+        String actual = subject.kThValue(2).getValue(precision).toString();
 
         assertEquals(expected, actual);
     }
@@ -68,7 +68,7 @@ class SquareRootTest {
         String expected = ExtractData.extract("datas/sqrt_5.txt");
 
         MathContext precision = new MathContext(20_002);
-        String actual = subject.sqrt(20).getValue(precision).toString().substring(0,20_002);
+        String actual = subject.kThValue(20).getValue(precision).toString().substring(0,20_002);
 
         assertEquals(expected, actual);
     }
@@ -79,7 +79,7 @@ class SquareRootTest {
         String expected = ExtractData.extract("datas/sqrt_6.txt");
 
         MathContext precision = new MathContext(20_002);
-        String actual = subject.sqrt(20).getValue(precision).toString().substring(0, 20_002);
+        String actual = subject.kThValue(20).getValue(precision).toString().substring(0, 20_002);
         assertEquals(expected, actual);
     }
 
@@ -89,7 +89,7 @@ class SquareRootTest {
         String expected = ExtractData.extract("datas/sqrt_7.txt");
 
         MathContext precision = new MathContext(20_002);
-        String actual = sqrt7.sqrt(20).getValue(precision).toString().substring(0, 20_002);
+        String actual = sqrt7.kThValue(20).getValue(precision).toString().substring(0, 20_002);
         assertEquals(expected, actual);
     }
 
@@ -99,7 +99,7 @@ class SquareRootTest {
         String expected = ExtractData.extract("datas/golden_ratio.txt");
 
         MathContext precision = new MathContext(20_002);
-        BigDecimal sqrt5 = SQRT5.sqrt(20).getValue(precision);
+        BigDecimal sqrt5 = SQRT5.kThValue(20).getValue(precision);
         String actual = BigDecimal.valueOf(1).add(sqrt5).divide(BigDecimal.valueOf(2), new MathContext(20_002))
                 .toString().substring(0, 20_002);
 

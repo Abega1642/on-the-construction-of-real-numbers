@@ -46,11 +46,9 @@ public class SquareRootSub extends Sequence {
 		return thePerfectSquare;
 	}
 
-    /**
-     * @param k : k is range of the square root sequence
-     * @return the k-th value of the square root sequence
-     */
-    public Fraction sqrtSub(long k) {
+
+    @Override
+    public Fraction kThValue(long k) {
         if (this.getN() == rootValue * rootValue) {
             return Fraction.ZERO;
 
@@ -70,8 +68,8 @@ public class SquareRootSub extends Sequence {
             return Fraction.valueOf(num, den);
 
         } else {
-            Fraction sq_k_1 = sqrtSub(k-1);
-            Fraction sq_k_2 = sqrtSub(k-2);
+            Fraction sq_k_1 = kThValue(k-1);
+            Fraction sq_k_2 = kThValue(k-2);
 
             return sq_k_1.multiply(2).multiply(
                     sq_k_1.toThePowerOf(2)

@@ -13,7 +13,8 @@ public class SquareRoot extends Sequence {
         super(n);
     }
 
-    public Fraction sqrt(long k) {
+	@Override
+    public Fraction kThValue(long k) {
 		SquareRootSub sqSub = new SquareRootSub(this.getN());
 		long perfectSquare = sqSub.getRootValue();
 
@@ -27,7 +28,7 @@ public class SquareRoot extends Sequence {
 		    Fraction val = Fraction.ZERO;
 
 		    for (int i = 1; i <= k; i++) {
-		        Fraction sqSub_i = sqSub.sqrtSub(i);
+		        Fraction sqSub_i = sqSub.kThValue(i);
 		        val = val.add(sqSub_i.inverse().opposite());
 		    }
 
