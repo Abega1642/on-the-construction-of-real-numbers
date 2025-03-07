@@ -106,7 +106,7 @@ By using these sources, we ensure that the program's results are tested against 
 
 `SquareRoot` and `SquareRootSub` implement an abstract class called `Sequence`, which is the super class of all sequences that are going to be used in this program. That `SquareRoot` class is where This repository focuses in.
 
-According to its implementation, we can find the expression of the sequence in the [SquareRoots](src/main/java/dev/razafindratelo/sequences/SquareRoot.java) a `kThValue` method which gives us the k-th value of the square root sequence. The natural mathematical notation will be <p>$$ x_k $$</p>
+According to its implementation, we can find the expression of the sequence in the [SquareRoots](src/main/java/dev/razafindratelo/sequences/SquareRoot.java) `kThValue` method which gives us the k-th value of the square root sequence. The natural mathematical notation will be <p>$$ x_k $$</p>
 
 The mathematical expression of this sequence is the following :
 
