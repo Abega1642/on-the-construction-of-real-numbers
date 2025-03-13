@@ -56,13 +56,13 @@ public class SquareRootSub extends Sequence {
             return Fraction.valueOf(rootValue);
 
         } else if (k == 1) {
-            long num = 2 * rootValue;
+            long num = rootValue << 1;
             long den = (rootValue * rootValue) - this.getN();
 
             return Fraction.valueOf(num, den);
 
         } else if (k == 2) {
-            long num = 4 * rootValue * ((rootValue * rootValue) + this.getN() );
+            long num = rootValue * ((rootValue * rootValue) + this.getN() ) << 2;
             long den = ((rootValue * rootValue) - this.getN()) * ((rootValue * rootValue) - this.getN());
 
             return Fraction.valueOf(num, den);

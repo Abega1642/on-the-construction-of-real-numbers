@@ -1,5 +1,8 @@
 package dev.razafindratelo.utils;
 
+/**
+ * NOTE: This class is not yet used in the program, but it will be in the future
+ */
 public class EuclideanUtils {
 
     public static long gcd(long a, long b) {

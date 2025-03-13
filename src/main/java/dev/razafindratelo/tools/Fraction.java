@@ -20,7 +20,7 @@ public class Fraction {
 
 
     public Fraction(BigInteger numerator, BigInteger denominator) {
-        if (denominator.equals(BigInteger.ZERO)) {
+        if (BigInteger.ZERO.equals(denominator)) {
             throw new IllegalArgumentException("Denominator must be non-zero");
         }
 
@@ -39,7 +39,7 @@ public class Fraction {
 
     /**
      *
-     *  ==========================  FRACTION STATIC FACTORY ==========================
+     *   FRACTION STATIC FACTORIES
      *
      */
 
@@ -61,7 +61,7 @@ public class Fraction {
         BigInteger num = BigInteger.valueOf(random.nextLong(from, to + 1 ));
         BigInteger den = BigInteger.valueOf(random.nextLong(from, to + 1));
 
-        if (den.equals(BigInteger.ZERO)) {
+        if (BigInteger.ZERO.equals(den)) {
             den = BigInteger.ONE;
         }
         return new Fraction(num, den);
@@ -69,7 +69,7 @@ public class Fraction {
 
     /**
      *
-     *  ==========================  FRACTION METHODS  ==========================
+     *  FRACTION METHODS
      *
      */
 
