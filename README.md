@@ -110,6 +110,9 @@ considered highly accurate.
 By using these sources, we ensure that the program's results are tested against
 verified, high-precision values, reinforcing the reliability of the algorithm.
 
+>	Note : All test datas contains 20,000 decimals
+
+
 ## About the [_SquareRoots_](src/main/java/dev/razafindratelo/sequences)
 
 `SquareRoot` and `SquareRootSub` implement an abstract class called `Sequence`,
