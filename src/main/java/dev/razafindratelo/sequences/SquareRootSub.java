@@ -11,10 +11,14 @@ import lombok.Getter;
 @EqualsAndHashCode(callSuper = true)
 public class SquareRootSub extends Sequence {
     private final long rootValue;
+    private final long rootValueSquared;
+    private final long squareDeviation;
 
     public SquareRootSub(long n) {
         super(n);
         this.rootValue = getThePerfectSquareRoot(n);
+        this.rootValueSquared = rootValue * rootValue;
+        this.squareDeviation = rootValueSquared - n;
     }
 
     /**
@@ -48,36 +52,35 @@ public class SquareRootSub extends Sequence {
 
 
     @Override
-    public Fraction kThValue(long k) {
-        if (this.getN() == rootValue * rootValue) {
-            return Fraction.ZERO;
+	public Fraction kThValue(long k) {
 
-        } else if (k == 0) {
-            return Fraction.valueOf(rootValue);
+		if (rootValueSquared == this.getN())
+			return Fraction.ZERO;
+		if (k == 0)
+			return Fraction.valueOf(rootValue);
+		if (k == 1)
+			return Fraction.valueOf(rootValue << 1, squareDeviation);
 
-        } else if (k == 1) {
-            long num = rootValue << 1;
-            long den = (rootValue * rootValue) - this.getN();
+		Fraction sq_k_2 = Fraction.valueOf(
+				rootValue << 1,
+				squareDeviation
+		);
+		Fraction sq_k_1 = Fraction.valueOf(
+				rootValue * (rootValueSquared + this.getN()) << 2,
+				squareDeviation * squareDeviation
+		);
 
-            return Fraction.valueOf(num, den);
+		Fraction result = sq_k_1;
 
-        } else if (k == 2) {
-            long num = rootValue * ((rootValue * rootValue) + this.getN() ) << 2;
-            long den = ((rootValue * rootValue) - this.getN()) * ((rootValue * rootValue) - this.getN());
+		for (long i = 3; i <= k; i++) {
+		    result = sq_k_1.multiply(sq_k_1.divide(sq_k_2).toThePowerOf(2).add(-2));
+		    sq_k_2 = sq_k_1;
+		    sq_k_1 = result;
+		}
 
-            return Fraction.valueOf(num, den);
+		return result;
+	}
 
-        } else {
-            Fraction sq_k_1 = kThValue(k-1);
-            Fraction sq_k_2 = kThValue(k-2);
 
-            return sq_k_1.multiply(2).multiply(
-                    sq_k_1.toThePowerOf(2)
-                            .divide(
-                                    sq_k_2.toThePowerOf(2).multiply(2)
-                            ).add(-1)
-            );
-        }
-    }
 
 }
