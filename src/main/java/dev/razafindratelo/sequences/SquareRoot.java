@@ -15,12 +15,11 @@ public class SquareRoot extends Sequence {
 
 	@Override
     public Fraction kThValue(long k) {
-		SquareRootSub sqSub = new SquareRootSub(this.getN());
-		long perfectSquare = sqSub.getRootValue();
+		if (this.getN() == 1) return Fraction.ONE;
 
-		if (this.getN() == perfectSquare * perfectSquare) {
-		    return Fraction.valueOf(perfectSquare);
-		}
+		final SquareRootSub sqSub = new SquareRootSub(this.getN());
+
+		if (this.getN() == sqSub.getRootValueSquared()) return Fraction.valueOf(sqSub.getRootValue());
 
 		if (k == 0) {
 		    return Fraction.valueOf(sqSub.getRootValue());

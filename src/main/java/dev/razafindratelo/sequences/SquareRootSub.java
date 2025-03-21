@@ -27,9 +27,9 @@ public class SquareRootSub extends Sequence {
      */
 
     private static long getThePerfectSquareRoot(long n) {
-		if (n < 0) {
-		    throw new IllegalArgumentException("Input must be non-negative");
-		}
+		if (n < 0) throw new IllegalArgumentException("Input must be non-negative");
+
+		if (n == 1) return n;
 
 		long lowerBound = 0;
 		long upperBound = n;

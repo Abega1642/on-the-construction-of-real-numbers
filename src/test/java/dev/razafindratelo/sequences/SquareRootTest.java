@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  *  Number of test = 8
  *  Number of Success test = 8
- *  Execution time = 2 s 295 ms for all test combined in one run
+ *  Execution time = 2 s 202 ms for all test combined in one run
  */
 class SquareRootTest {
 
@@ -19,15 +19,14 @@ class SquareRootTest {
         var subject = new SquareRoot(1);
         String expected = "1";
 
-
-        MathContext precision = new MathContext(2);
+        MathContext precision = new MathContext(0);
         String actual = subject.kThValue(0).getValue(precision).toString();
 
         assertEquals(expected, actual);
     }
 
     @Test
-    void test_the_square_root_of_2_with_20_001_decimals_for_k_eq_15() throws IOException {
+    void test_the_square_root_of_2_with_20_000_decimals_for_k_eq_15() throws IOException {
         var subject = new SquareRoot(2);
 
         String expected = ExtractData.extract("datas/sqrt_2.txt");
@@ -57,7 +56,7 @@ class SquareRootTest {
         var subject = new SquareRoot(4);
         String expected = "2";
 
-        MathContext precision = new MathContext(2);
+        MathContext precision = new MathContext(0);
         String actual = subject.kThValue(0).getValue(precision).toString();
 
         assertEquals(expected, actual);
@@ -81,6 +80,7 @@ class SquareRootTest {
 
         MathContext precision = new MathContext(20_002);
         String actual = subject.kThValue(15).getValue(precision).toString().substring(0, 20_002);
+
         assertEquals(expected, actual);
     }
 
