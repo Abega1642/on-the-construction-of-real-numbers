@@ -92,6 +92,10 @@ public class Fraction {
     }
 
     public Fraction multiply(Fraction f) {
+        if (this == ZERO || f == ZERO) return ZERO;
+        if (this == ONE) return f;
+        if (f == ONE) return this;
+
         return new Fraction(
                 this.numerator.multiply(f.numerator),
                 this.denominator.multiply(f.denominator)
@@ -129,11 +133,11 @@ public class Fraction {
         Fraction result = Fraction.ONE;
 
         while (absValueOfN > 0) {
-            if (absValueOfN % 2 == 1) {
+            if ((absValueOfN & 1) == 1) {
                 result = result.multiply(base);
             }
             base = base.multiply(base);
-            absValueOfN /= 2;
+            absValueOfN >>= 1;
         }
 
         return result;
