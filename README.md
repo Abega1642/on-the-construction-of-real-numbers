@@ -100,18 +100,51 @@ Here are the data files and their sources:
 | `sqrt_5.txt`       | [NASA - sqrt5.1mil](https://apod.nasa.gov/htmltest/gifcity/sqrt5.1mil)           |
 | `sqrt_6.txt`       | [NASA - sqrt6.1mil](https://apod.nasa.gov/htmltest/gifcity/sqrt6.1mil)           |
 | `sqrt_7.txt`       | [NASA - sqrt7.1mil](https://apod.nasa.gov/htmltest/gifcity/sqrt7.1mil)           |
-| `golden_ratio.txt` | [University of Arizona - Phi](https://www2.cs.arizona.edu/icon/oddsends/phi.htm) |
 
 These sources provide extremely precise approximations of well-known
-mathematical constants. Since NASA and major academic institutions rely on
+mathematical constants. Since NASA rely on
 precise calculations for research and space exploration, their datasets are
 considered highly accurate.
 
 By using these sources, we ensure that the program's results are tested against
 verified, high-precision values, reinforcing the reliability of the algorithm.
 
->	Note : All test datas contains 20,000 decimals
 
+### About tests precision :
+
+All of the tests found in the [test](src/test/java/dev/razafindratelo/sequences/) package have exactly `ONE MILLION` (`1 000 000`) decimal places.
+
+### Mathematical remarks about the [tests](src/test/java/dev/razafindratelo/sequences/):
+
+As we can notice in tests done in the [test](src/test/java/dev/razafindratelo/sequences/) package, we can see that :
+
+<div>
+	<p>
+	$$
+	\vert \sqrt{2} - x_{21} \vert < 10^{-10^{9}}
+	$$
+	</p>
+	<p>
+	$$
+	\vert \sqrt{3} - x_{20} \vert < 10^{-10^{9}}
+	$$
+	</p>
+	<p>
+	$$
+	\vert \sqrt{5} - x_{21} \vert < 10^{-10^{9}}
+	$$
+	</p>
+	<p>
+	$$
+	\vert \sqrt{6} - x_{20} \vert < 10^{-10^{9}}
+	$$
+	</p>
+	<p>
+	$$
+	\vert \sqrt{7} - x_{20} \vert < 10^{-10^{9}}
+	$$
+	</p>
+</div>
 
 ## About the [_SquareRoots_](src/main/java/dev/razafindratelo/sequences)
 
