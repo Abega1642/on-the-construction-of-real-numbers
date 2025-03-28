@@ -15,23 +15,23 @@ public class SquareRoot extends Sequence {
 
 	@Override
     public Fraction kThValue(long k) {
-		if (this.getN() == 1) return Fraction.ONE;
+	if (this.getN() == 1) return Fraction.ONE;
 
-		final SquareRootSub sqSub = new SquareRootSub(this.getN());
+	final SquareRootSub sqSub = new SquareRootSub(this.getN());
 
-		if (this.getN() == sqSub.getRootValueSquared()) return Fraction.valueOf(sqSub.getRootValue());
+	if (this.getN() == sqSub.getRootValueSquared()) return Fraction.valueOf(sqSub.getRootValue());
 
-		if (k == 0) {
-		    return Fraction.valueOf(sqSub.getRootValue());
-		} else {
-		    Fraction val = Fraction.ZERO;
+	if (k == 0) {
+	    return Fraction.valueOf(sqSub.getRootValue());
+	} else {
+	    Fraction val = Fraction.ZERO;
 
-		    for (int i = 1; i <= k; i++) {
-		        val = val.add(sqSub.kThValue(i).inverse().opposite());
-		    }
+	    for (int i = 1; i <= k; i++) {
+	        val = val.add(sqSub.kThValue(i).inverse().opposite());
+	    }
 
-		    return val.add(sqSub.getRootValue());
-		}
+	    return val.add(sqSub.getRootValue());
 	}
+    }
 
 }
