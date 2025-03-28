@@ -85,11 +85,9 @@ is available.
 To verify the accuracy of the sequence, we compare our results with
 high-precision values from reliable external sources.
 
-All test data used in this repository come from trusted mathematical sources,
-including:
+All test data used in this repository come from trusted mathematical sources:
 
 - NASA's _Astronomy Picture of the Day_ (APOD) numerical data repository
-- The University of Arizona’s _Mathematical Constants_ database
 
 Here are the data files and their sources:
 
