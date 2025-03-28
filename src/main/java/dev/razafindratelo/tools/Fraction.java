@@ -1,5 +1,6 @@
 package dev.razafindratelo.tools;
 
+import dev.razafindratelo.tools.gmp.GMPUtil;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -20,11 +21,14 @@ public class Fraction {
 
 
     public Fraction(BigInteger numerator, BigInteger denominator) {
-        if (BigInteger.ZERO.equals(denominator)) {
+        if (BigInteger.ZERO.equals(denominator))
             throw new IllegalArgumentException("Denominator must be non-zero");
-        }
 
-        BigInteger gcd = numerator.gcd(denominator);
+
+        String gcdStr = GMPUtil.gcd(numerator.toString(), denominator.toString());
+
+        BigInteger gcd = new BigInteger(gcdStr);
+
         numerator = numerator.divide(gcd);
         denominator = denominator.divide(gcd);
 
@@ -61,9 +65,9 @@ public class Fraction {
         BigInteger num = BigInteger.valueOf(random.nextLong(from, to + 1 ));
         BigInteger den = BigInteger.valueOf(random.nextLong(from, to + 1));
 
-        if (BigInteger.ZERO.equals(den)) {
+        if (BigInteger.ZERO.equals(den))
             den = BigInteger.ONE;
-        }
+
         return new Fraction(num, den);
     }
 
@@ -87,8 +91,7 @@ public class Fraction {
     }
 
     public Fraction add(long n) {
-        Fraction frac = Fraction.valueOf(n);
-        return  this.add(frac);
+        return this.add(Fraction.valueOf(n));
     }
 
     public Fraction multiply(Fraction f) {
@@ -103,8 +106,7 @@ public class Fraction {
     }
 
     public Fraction multiply(long n) {
-        Fraction frac = Fraction.valueOf(n);
-        return this.multiply(frac);
+        return this.multiply(Fraction.valueOf(n));
     }
 
     public Fraction inverse() {
@@ -124,9 +126,7 @@ public class Fraction {
     }
 
     public Fraction toThePowerOf(long n) {
-        if (n == 0) {
-            return Fraction.ONE;
-        }
+        if (n == 0) return Fraction.ONE;
         
         long absValueOfN = Math.abs(n);
         Fraction base = (n < 0) ? this.inverse() : this;

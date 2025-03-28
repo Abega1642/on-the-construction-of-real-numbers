@@ -22,10 +22,9 @@ public class SquareRootSub extends Sequence {
     }
 
     /**
-     * @param n : n is a positive integer
+     * @param n a positive integer
      * @return the minimum positive square root of the perfect square greater or equal than n.
      */
-
     private static long getThePerfectSquareRoot(long n) {
 		if (n < 0) throw new IllegalArgumentException("Input must be non-negative");
 
@@ -49,7 +48,6 @@ public class SquareRootSub extends Sequence {
 
 		return thePerfectSquare;
 	}
-
 
     @Override
 	public Fraction kThValue(long k) {
@@ -80,7 +78,5 @@ public class SquareRootSub extends Sequence {
 
 		return result;
 	}
-
-
 
 }

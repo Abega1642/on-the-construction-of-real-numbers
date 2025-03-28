@@ -27,8 +27,7 @@ public class SquareRoot extends Sequence {
 		    Fraction val = Fraction.ZERO;
 
 		    for (int i = 1; i <= k; i++) {
-		        Fraction sqSub_i = sqSub.kThValue(i);
-		        val = val.add(sqSub_i.inverse().opposite());
+		        val = val.add(sqSub.kThValue(i).inverse().opposite());
 		    }
 
 		    return val.add(sqSub.getRootValue());
