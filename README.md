@@ -26,12 +26,43 @@ In this repository, I'm just going to cover the algorithm part of the main idea.
 
 #### Java Version and dependencies
 
-This program is written in **Java 22** and use **Maven** as dependency manager.
+This program is written in **Java 22** and uses **Maven** as dependency manager.
 Make sure you have JDK 22 installed before running it.
+
+In addition to being written in Java 22 and using Maven as a dependency manager, this program also relies on GMP (GNU Multiple Precision Arithmetic Library) and JNA (Java Native Access).
+Instead of using `BigInteger.gcd`, the program leverages GMP for high-performance arithmetic operations, particularly for computing greatest common divisors (GCD) efficiently. This significantly improves performance when dealing with very large numbers in fraction operations.
+
+##### Installation requirements :
+To properly run this program, make sure the following dependencies are installed on your system:
+
+- Windows: Install GMP using MSYS2 or manually compile it.
+	
+- Linux :
+	- Debian/Ubuntu:
+	
+	
+	 		sudo apt install libgmp-dev
+	
+	 - Arch Linux:
+	   
+			sudo pacman -S gmp
+		
+	 - Fedora:
+	   
+		  	sudo dnf install gmp-devel
+
+- MacOS: Install GMP via Homebrew:
+
+		brew install gmp
+
+
+Additionally, JNA is managed via Maven, so no manual installation is required. However, ensure that your Java environment is correctly set up to load native libraries.
+
+
 
 #### About the class **Fraction**:
 
-Indeed, as we are using _Java_ while dealing with _rational numbers_, I prefered
+Indeed, as we are using _Java_ while dealing with _rational numbers_, I preferred
 to implement my owned version of what we define by rational number in
 programming : **fractions**.
 
