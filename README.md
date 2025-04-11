@@ -153,12 +153,10 @@ As we can notice in tests done in the [test](src/test/java/dev/razafindratelo/se
 	<p>
 	$$
 	\vert \sqrt{2} - x_{23} \vert < 10^{-6.10^{6}}
-
 	$$
 	</p>
 	<p>
 	$$
-
 	\vert \sqrt{3} - x_{20} \vert < 10^{-10^{6}}
 	$$
 	</p>
