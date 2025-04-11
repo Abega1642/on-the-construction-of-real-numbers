@@ -122,13 +122,13 @@ All test data used in this repository come from trusted mathematical sources:
 
 Here are the data files and their sources:
 
-| File Name          | Source                                                                           |
-| ------------------ | -------------------------------------------------------------------------------- |
-| `sqrt_2.txt`       | [NASA - sqrt2.1mil](https://apod.nasa.gov/htmltest/gifcity/sqrt2.1mil)           |
-| `sqrt_3.txt`       | [NASA - sqrt3.1mil](https://apod.nasa.gov/htmltest/gifcity/sqrt3.1mil)           |
-| `sqrt_5.txt`       | [NASA - sqrt5.1mil](https://apod.nasa.gov/htmltest/gifcity/sqrt5.1mil)           |
-| `sqrt_6.txt`       | [NASA - sqrt6.1mil](https://apod.nasa.gov/htmltest/gifcity/sqrt6.1mil)           |
-| `sqrt_7.txt`       | [NASA - sqrt7.1mil](https://apod.nasa.gov/htmltest/gifcity/sqrt7.1mil)           |
+| File Name          | Source                                                                   |
+| ------------------ |--------------------------------------------------------------------------|
+| `sqrt_2.txt`       | [NASA - sqrt2.10mil](https://apod.nasa.gov/htmltest/gifcity/sqrt2.10mil) |
+| `sqrt_3.txt`       | [NASA - sqrt3.1mil](https://apod.nasa.gov/htmltest/gifcity/sqrt3.1mil)   |
+| `sqrt_5.txt`       | [NASA - sqrt5.1mil](https://apod.nasa.gov/htmltest/gifcity/sqrt5.1mil)   |
+| `sqrt_6.txt`       | [NASA - sqrt6.1mil](https://apod.nasa.gov/htmltest/gifcity/sqrt6.1mil)   |
+| `sqrt_7.txt`       | [NASA - sqrt7.1mil](https://apod.nasa.gov/htmltest/gifcity/sqrt7.1mil)   |
 
 These sources provide extremely precise approximations of well-known
 mathematical constants. Since NASA rely on
@@ -141,7 +141,8 @@ verified, high-precision values, reinforcing the reliability of the algorithm.
 
 ### About tests precision :
 
-All of the tests found in the [test](src/test/java/dev/razafindratelo/sequences/) package have exactly `ONE MILLION` (`1 000 000`) decimal places.
+4/5 of the tests found in the [test](src/test/java/dev/razafindratelo/sequences/) package have exactly `ONE MILLION` (`1,000,000`) decimal places.
+The test for square root of 2 is about `SIX MILLION` (`6,000,000`) decimal places.
 
 ### Mathematical remarks about the [tests](src/test/java/dev/razafindratelo/sequences/):
 
@@ -150,30 +151,31 @@ As we can notice in tests done in the [test](src/test/java/dev/razafindratelo/se
 <div>
 	<p>
 	$$
-	\vert \sqrt{2} - x_{21} \vert < 10^{-10^{9}}
+	\vert \sqrt{2} - x_{23} \vert < 10^{-6.10^{6}}
 	$$
 	</p>
 	<p>
 	$$
-	\vert \sqrt{3} - x_{20} \vert < 10^{-10^{9}}
+	\vert \sqrt{3} - x_{20} \vert < 10^{-10^{6}}
 	$$
 	</p>
 	<p>
 	$$
-	\vert \sqrt{5} - x_{21} \vert < 10^{-10^{9}}
+	\vert \sqrt{5} - x_{21} \vert < 10^{-10^{6}}
 	$$
 	</p>
 	<p>
 	$$
-	\vert \sqrt{6} - x_{20} \vert < 10^{-10^{9}}
+	\vert \sqrt{6} - x_{20} \vert < 10^{-10^{6}}
 	$$
 	</p>
 	<p>
 	$$
-	\vert \sqrt{7} - x_{20} \vert < 10^{-10^{9}}
+	\vert \sqrt{7} - x_{20} \vert < 10^{-10^{6}}
 	$$
 	</p>
 </div>
+
 
 ## About the [_SquareRoots_](src/main/java/dev/razafindratelo/sequences)
 
@@ -186,7 +188,6 @@ the [SquareRoots](src/main/java/dev/razafindratelo/sequences/SquareRoot.java)
 `kThValue` method which gives us the k-th value of the square root sequence. The
 natural mathematical notation will be <p>$$ x_k $$
 
-</p>
 
 The mathematical expression of this sequence is the following :
 
@@ -247,7 +248,6 @@ $$
 Where the `SquareRootSub` class represents the sequence <p>
 $$ (a_{n})_{\mathbb{N^{*}}} $$
 
-</p>
 
 and the `SquareRoot` class represents the sequence
 
