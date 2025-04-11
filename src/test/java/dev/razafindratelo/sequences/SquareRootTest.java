@@ -10,14 +10,9 @@ import static org.junit.jupiter.api.Assertions.*;
  *  Number of test: 7
  *  Number of Success test: 7
  *  All tests has exactly 1×10⁶ (One million) decimal places
- *  Execution time: 1 min 43 ms for all test combined in one run (might be less than that according to computer's power)
+ *  Execution time: 5 min 34 ms for all test combined in one run (might be less than that according to computer's power)
  */
 class SquareRootTest {
-
-    @Test
-    public void hello() {
-
-    }
 
     /**
      * Duration: 256 ms
@@ -34,10 +29,10 @@ class SquareRootTest {
     }
 
     /**
-     * Duration: 4min 40ms
+     * Duration: 4min 11s
      */
     @Test
-    void test_the_square_root_of_2_with__1_00_000__decimals_places_for_k_eq_21() throws IOException {
+    void test_the_square_root_of_2_with__6_000_000__decimals_places_for_k_eq_23() throws IOException {
         var subject = new SquareRoot(2);
 
         String expected = ExtractData.extract("datas/sqrt_2.txt");
@@ -52,7 +47,7 @@ class SquareRootTest {
      * Duration: 16s 798ms
      */
     @Test
-    void test_the_square_root_of_3_with__1_00_000__decimals_places_for_k_eq_20() throws IOException {
+    void test_the_square_root_of_3_with__1_000_000__decimals_places_for_k_eq_20() throws IOException {
         var subject = new SquareRoot(3);
         String expected = ExtractData.extract("datas/sqrt_3.txt");
 
@@ -81,7 +76,7 @@ class SquareRootTest {
      * Duration: 28s 640ms
      */
     @Test
-    void test_the_square_root_of_5_with__1_00_000__decimals_places_for_k_eq_21() throws IOException {
+    void test_the_square_root_of_5_with__1_000_000__decimals_places_for_k_eq_21() throws IOException {
         var subject = new SquareRoot(5);
         String expected = ExtractData.extract("datas/sqrt_5.txt");
 
@@ -95,7 +90,7 @@ class SquareRootTest {
      * Duration: 15s 597ms
      */
     @Test
-    void test_the_square_root_of_6_with__1_00_000__decimals_places_for_k_eq_20() throws IOException {
+    void test_the_square_root_of_6_with__1_000_000__decimals_places_for_k_eq_20() throws IOException {
         var subject = new SquareRoot(6);
         String expected = ExtractData.extract("datas/sqrt_6.txt");
 
@@ -109,7 +104,7 @@ class SquareRootTest {
      * Duration: 17s 797ms
      */
     @Test
-    void test_the_square_root_of_7_with__1_00_000__decimals_places_for_k_eq_20() throws IOException {
+    void test_the_square_root_of_7_with__1_000_000__decimals_places_for_k_eq_20() throws IOException {
         var sqrt7 = new SquareRoot(7);
         String expected = ExtractData.extract("datas/sqrt_7.txt");
 
