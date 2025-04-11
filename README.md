@@ -144,6 +144,7 @@ verified, high-precision values, reinforcing the reliability of the algorithm.
 4/5 of the tests found in the [test](src/test/java/dev/razafindratelo/sequences/) package have exactly `ONE MILLION` (`1,000,000`) decimal places.
 The test for square root of 2 is about `SIX MILLION` (`6,000,000`) decimal places.
 
+
 ### Mathematical remarks about the [tests](src/test/java/dev/razafindratelo/sequences/):
 
 As we can notice in tests done in the [test](src/test/java/dev/razafindratelo/sequences/) package, we can see that :
@@ -152,10 +153,12 @@ As we can notice in tests done in the [test](src/test/java/dev/razafindratelo/se
 	<p>
 	$$
 	\vert \sqrt{2} - x_{23} \vert < 10^{-6.10^{6}}
+
 	$$
 	</p>
 	<p>
 	$$
+
 	\vert \sqrt{3} - x_{20} \vert < 10^{-10^{6}}
 	$$
 	</p>
@@ -175,7 +178,6 @@ As we can notice in tests done in the [test](src/test/java/dev/razafindratelo/se
 	$$
 	</p>
 </div>
-
 
 ## About the [_SquareRoots_](src/main/java/dev/razafindratelo/sequences)
 
