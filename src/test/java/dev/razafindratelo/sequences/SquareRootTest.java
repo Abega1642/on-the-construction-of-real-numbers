@@ -14,6 +14,11 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class SquareRootTest {
 
+    @Test
+    public void hello() {
+
+    }
+
     /**
      * Duration: 256 ms
      */
@@ -29,7 +34,7 @@ class SquareRootTest {
     }
 
     /**
-     * Duration: 25s 229ms
+     * Duration: 4min 40ms
      */
     @Test
     void test_the_square_root_of_2_with__1_00_000__decimals_places_for_k_eq_21() throws IOException {
@@ -37,8 +42,8 @@ class SquareRootTest {
 
         String expected = ExtractData.extract("datas/sqrt_2.txt");
 
-        MathContext precision = new MathContext(1_000_002);
-        String actual = subject.kThValue(21).getValue(precision).toString().substring(0, 1_000_002);
+        MathContext precision = new MathContext(6_000_006);
+        String actual = subject.kThValue(23).getValue(precision).toString().substring(0, 6_000_002);
 
         assertEquals(expected, actual);
     }
