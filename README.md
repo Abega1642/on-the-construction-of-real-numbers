@@ -26,12 +26,43 @@ In this repository, I'm just going to cover the algorithm part of the main idea.
 
 #### Java Version and dependencies
 
-This program is written in **Java 22** and use **Maven** as dependency manager.
+This program is written in **Java 22** and uses **Maven** as dependency manager.
 Make sure you have JDK 22 installed before running it.
+
+In addition to being written in Java 22 and using Maven as a dependency manager, this program also relies on GMP (GNU Multiple Precision Arithmetic Library) and JNA (Java Native Access).
+Instead of using `BigInteger.gcd`, the program leverages GMP for high-performance arithmetic operations, particularly for computing greatest common divisors (GCD) efficiently. This significantly improves performance when dealing with very large numbers in fraction operations.
+
+##### Installation requirements :
+To properly run this program, make sure the following dependencies are installed on your system:
+
+- Windows: Install GMP using MSYS2 or manually compile it.
+	
+- Linux :
+	- Debian/Ubuntu:
+	
+	
+	 		sudo apt install libgmp-dev
+	
+	 - Arch Linux:
+	   
+			sudo pacman -S gmp
+		
+	 - Fedora:
+	   
+		  	sudo dnf install gmp-devel
+
+- MacOS: Install GMP via Homebrew:
+
+		brew install gmp
+
+
+Additionally, JNA is managed via Maven, so no manual installation is required. However, ensure that your Java environment is correctly set up to load native libraries.
+
+
 
 #### About the class **Fraction**:
 
-Indeed, as we are using _Java_ while dealing with _rational numbers_, I prefered
+Indeed, as we are using _Java_ while dealing with _rational numbers_, I preferred
 to implement my owned version of what we define by rational number in
 programming : **fractions**.
 
@@ -85,11 +116,9 @@ is available.
 To verify the accuracy of the sequence, we compare our results with
 high-precision values from reliable external sources.
 
-All test data used in this repository come from trusted mathematical sources,
-including:
+All test data used in this repository come from trusted mathematical sources:
 
 - NASA's _Astronomy Picture of the Day_ (APOD) numerical data repository
-- The University of Arizona’s _Mathematical Constants_ database
 
 Here are the data files and their sources:
 
@@ -100,15 +129,51 @@ Here are the data files and their sources:
 | `sqrt_5.txt`       | [NASA - sqrt5.1mil](https://apod.nasa.gov/htmltest/gifcity/sqrt5.1mil)           |
 | `sqrt_6.txt`       | [NASA - sqrt6.1mil](https://apod.nasa.gov/htmltest/gifcity/sqrt6.1mil)           |
 | `sqrt_7.txt`       | [NASA - sqrt7.1mil](https://apod.nasa.gov/htmltest/gifcity/sqrt7.1mil)           |
-| `golden_ratio.txt` | [University of Arizona - Phi](https://www2.cs.arizona.edu/icon/oddsends/phi.htm) |
 
 These sources provide extremely precise approximations of well-known
-mathematical constants. Since NASA and major academic institutions rely on
+mathematical constants. Since NASA rely on
 precise calculations for research and space exploration, their datasets are
 considered highly accurate.
 
 By using these sources, we ensure that the program's results are tested against
 verified, high-precision values, reinforcing the reliability of the algorithm.
+
+
+### About tests precision :
+
+All of the tests found in the [test](src/test/java/dev/razafindratelo/sequences/) package have exactly `ONE MILLION` (`1 000 000`) decimal places.
+
+### Mathematical remarks about the [tests](src/test/java/dev/razafindratelo/sequences/):
+
+As we can notice in tests done in the [test](src/test/java/dev/razafindratelo/sequences/) package, we can see that :
+
+<div>
+	<p>
+	$$
+	\vert \sqrt{2} - x_{21} \vert < 10^{-10^{9}}
+	$$
+	</p>
+	<p>
+	$$
+	\vert \sqrt{3} - x_{20} \vert < 10^{-10^{9}}
+	$$
+	</p>
+	<p>
+	$$
+	\vert \sqrt{5} - x_{21} \vert < 10^{-10^{9}}
+	$$
+	</p>
+	<p>
+	$$
+	\vert \sqrt{6} - x_{20} \vert < 10^{-10^{9}}
+	$$
+	</p>
+	<p>
+	$$
+	\vert \sqrt{7} - x_{20} \vert < 10^{-10^{9}}
+	$$
+	</p>
+</div>
 
 ## About the [_SquareRoots_](src/main/java/dev/razafindratelo/sequences)
 
