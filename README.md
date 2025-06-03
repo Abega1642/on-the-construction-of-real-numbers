@@ -20,6 +20,18 @@ A more detailed theoretical discussion, including mathematical proofs, is
 available in a separate LaTeX-written article in another repository which is for
 now still private for some reasons.
 
+---
+
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
+This project is a **research-based implementation** of a rational sequence that
+approximates the square root of any positive number.\
+It combines **mathematical rigor** and **high-performance Java code** to
+demonstrate how a dense subset of ℚ (rational numbers) can be used to approach
+any real number √n with extreme precision.
+
+---
+
 ## About this program :
 
 In this repository, I'm just going to cover the algorithm part of the main idea.
@@ -29,41 +41,46 @@ In this repository, I'm just going to cover the algorithm part of the main idea.
 This program is written in **Java 22** and uses **Maven** as dependency manager.
 Make sure you have JDK 22 installed before running it.
 
-In addition to being written in Java 22 and using Maven as a dependency manager, this program also relies on GMP (GNU Multiple Precision Arithmetic Library) and JNA (Java Native Access).
-Instead of using `BigInteger.gcd`, the program leverages GMP for high-performance arithmetic operations, particularly for computing greatest common divisors (GCD) efficiently. This significantly improves performance when dealing with very large numbers in fraction operations.
+In addition to being written in Java 22 and using Maven as a dependency manager,
+this program also relies on GMP (GNU Multiple Precision Arithmetic Library) and
+JNA (Java Native Access). Instead of using `BigInteger.gcd`, the program
+leverages GMP for high-performance arithmetic operations, particularly for
+computing greatest common divisors (GCD) efficiently. This significantly
+improves performance when dealing with very large numbers in fraction
+operations.
 
 ##### Installation requirements :
-To properly run this program, make sure the following dependencies are installed on your system:
 
-- Windows: Install GMP using MSYS2 or manually compile it.
-	
-- Linux :
-	- Debian/Ubuntu:
-	
-	
-	 		sudo apt install libgmp-dev
-	
-	 - Arch Linux:
-	   
-			sudo pacman -S gmp
-		
-	 - Fedora:
-	   
-		  	sudo dnf install gmp-devel
+To properly run this program, make sure the following dependencies are installed
+on your system:
 
-- MacOS: Install GMP via Homebrew:
+- **Windows**: Install GMP using MSYS2 or manually compile it.
 
-		brew install gmp
+- **Linux**:
+  - Debian/Ubuntu:
 
+        sudo apt install libgmp-dev
 
-Additionally, JNA is managed via Maven, so no manual installation is required. However, ensure that your Java environment is correctly set up to load native libraries.
+  - Arch Linux:
 
+        sudo pacman -S gmp
 
+  - Fedora:
+
+        sudo dnf install gmp-devel
+
+- **MacOS**: Install GMP via Homebrew:
+
+      brew install gmp
+
+Additionally, JNA is managed via Maven, so no manual installation is required.
+However, ensure that your Java environment is correctly set up to load native
+libraries.
 
 #### About the class **Fraction**:
 
-Indeed, as we are using _Java_ while dealing with _rational numbers_, I preferred
-to implement my owned version of what we define by rational number in
+Indeed, as we are using _Java_ while dealing with _rational numbers_, I
+preferred to implement my owned version of what we define by rational number in
 programming : **fractions**.
 
 The program provides an object called _**Fraction**_ which represents fraction
@@ -122,32 +139,32 @@ All test data used in this repository come from trusted mathematical sources:
 
 Here are the data files and their sources:
 
-| File Name          | Source                                                                   |
-| ------------------ |--------------------------------------------------------------------------|
-| `sqrt_2.txt`       | [NASA - sqrt2.10mil](https://apod.nasa.gov/htmltest/gifcity/sqrt2.10mil) |
-| `sqrt_3.txt`       | [NASA - sqrt3.1mil](https://apod.nasa.gov/htmltest/gifcity/sqrt3.1mil)   |
-| `sqrt_5.txt`       | [NASA - sqrt5.1mil](https://apod.nasa.gov/htmltest/gifcity/sqrt5.1mil)   |
-| `sqrt_6.txt`       | [NASA - sqrt6.1mil](https://apod.nasa.gov/htmltest/gifcity/sqrt6.1mil)   |
-| `sqrt_7.txt`       | [NASA - sqrt7.1mil](https://apod.nasa.gov/htmltest/gifcity/sqrt7.1mil)   |
+| File Name    | Source                                                                   |
+| ------------ | ------------------------------------------------------------------------ |
+| `sqrt_2.txt` | [NASA - sqrt2.10mil](https://apod.nasa.gov/htmltest/gifcity/sqrt2.10mil) |
+| `sqrt_3.txt` | [NASA - sqrt3.1mil](https://apod.nasa.gov/htmltest/gifcity/sqrt3.1mil)   |
+| `sqrt_5.txt` | [NASA - sqrt5.1mil](https://apod.nasa.gov/htmltest/gifcity/sqrt5.1mil)   |
+| `sqrt_6.txt` | [NASA - sqrt6.1mil](https://apod.nasa.gov/htmltest/gifcity/sqrt6.1mil)   |
+| `sqrt_7.txt` | [NASA - sqrt7.1mil](https://apod.nasa.gov/htmltest/gifcity/sqrt7.1mil)   |
 
 These sources provide extremely precise approximations of well-known
-mathematical constants. Since NASA rely on
-precise calculations for research and space exploration, their datasets are
-considered highly accurate.
+mathematical constants. Since NASA rely on precise calculations for research and
+space exploration, their datasets are considered highly accurate.
 
 By using these sources, we ensure that the program's results are tested against
 verified, high-precision values, reinforcing the reliability of the algorithm.
 
-
 ### About tests precision :
 
-4/5 of the tests found in the [test](src/test/java/dev/razafindratelo/sequences/) package have exactly `ONE MILLION` (`1,000,000`) decimal places.
-The test for square root of 2 is about `SIX MILLION` (`6,000,000`) decimal places.
-
+4/5 of the tests found in the
+[test](src/test/java/dev/razafindratelo/sequences/) package have exactly
+`ONE MILLION` (`1,000,000`) decimal places. The test for square root of 2 is
+about `SIX MILLION` (`6,000,000`) decimal places.
 
 ### Mathematical remarks about the [tests](src/test/java/dev/razafindratelo/sequences/):
 
-As we can notice in tests done in the [test](src/test/java/dev/razafindratelo/sequences/) package, we can see that :
+As we can notice in tests done in the
+[test](src/test/java/dev/razafindratelo/sequences/) package, we can see that :
 
 <div>
 	<p>
@@ -188,7 +205,6 @@ the [SquareRoots](src/main/java/dev/razafindratelo/sequences/SquareRoot.java)
 `kThValue` method which gives us the k-th value of the square root sequence. The
 natural mathematical notation will be <p>$$ x_k $$
 
-
 The mathematical expression of this sequence is the following :
 
 <p align="center">
@@ -228,7 +244,7 @@ Then the final sequence that gives us the square root of _m_ is the following :
 
 <p>
 $$
-\therefore \quad \sqrt{m} = c-\lim_{n \longrightarrow +\infty} \sum_{k = 1}^{n}{\frac{1}{a_k}} 
+\therefore \quad \sqrt{m} = c-\lim_{n \longrightarrow +\infty} \sum_{k = 1}^{n}{\frac{1}{a_k}}
 $$
 </p>
 
@@ -247,7 +263,6 @@ $$
 
 Where the `SquareRootSub` class represents the sequence <p>
 $$ (a_{n})_{\mathbb{N^{*}}} $$
-
 
 and the `SquareRoot` class represents the sequence
 
