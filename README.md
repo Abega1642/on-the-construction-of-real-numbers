@@ -213,13 +213,13 @@ $$
 $$
 <p>
 	$$
-		\text{Let } P \text{ be the set of all perfect square. }. \\
+		\text{Let } \mathcal{S} \text{ be the set of all perfect square. }. \\
 	$$
 </p>
 <p>
 	$$
 	\text{Now, let } c \text{ be the smallest perfect square greater or equal to } m
-    	\Longleftrightarrow  \ c^{2} = \min_{s\in P, s \geq m} \lbrace s - m \rbrace
+    	\Longleftrightarrow  \ c^{2} = \min_{s\in \mathcal{S}, s \geq m} \lbrace s - m \rbrace
 	$$
 
 </p>
