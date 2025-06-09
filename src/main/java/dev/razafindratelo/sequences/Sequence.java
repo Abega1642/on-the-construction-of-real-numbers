@@ -12,11 +12,9 @@ import java.util.List;
 @ToString
 public abstract class Sequence {
     private long n;
-    private List<Fraction> values;
-
+    
     public Sequence(long n) {
         this.n = n;
-        values = new ArrayList<>();
     }
 
     /**

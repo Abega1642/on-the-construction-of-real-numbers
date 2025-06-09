@@ -1,6 +1,6 @@
 package dev.razafindratelo.sequences;
 
-import dev.razafindratelo.tools.ExtractData;
+import dev.razafindratelo.ExtractData;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.math.MathContext;
@@ -9,8 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  *  Number of test: 7
  *  Number of Success test: 7
- *  All tests has exactly 1×10⁶ (One million) decimal places
- *  Execution time: 5 min 34 ms for all test combined in one run (might be less than that according to computer's power)
+ *  Execution time: 5 min 26 ms for all test combined in one run (might be less than that according to computer's power)
  */
 class SquareRootTest {
 
@@ -29,7 +28,7 @@ class SquareRootTest {
     }
 
     /**
-     * Duration: 4min 11s
+     * Duration: 4min 03s
      */
     @Test
     void test_the_square_root_of_2_with__6_000_000__decimals_places_for_k_eq_23() throws IOException {

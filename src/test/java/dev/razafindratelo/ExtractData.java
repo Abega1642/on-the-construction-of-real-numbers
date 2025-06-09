@@ -1,4 +1,4 @@
-package dev.razafindratelo.tools;
+package dev.razafindratelo;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -6,8 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- *  NOTE : This ExtractData class is only used in SquareRootTest class for now, but it will be used
- *          in more different context in the future.
+ *  ExtractData: used in SquareRootTest to retrieve comparative data from NASA (/datas)
  */
 public class ExtractData {
     public static String extract(String path) throws IOException {
