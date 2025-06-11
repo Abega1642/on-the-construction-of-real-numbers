@@ -11,16 +11,16 @@ import java.util.List;
 @EqualsAndHashCode
 @ToString
 public abstract class Sequence {
-	private long n;
+    private long n;
 
-	public Sequence(long n) {
-		this.n = n;
-	}
+    public Sequence(long n) {
+        this.n = n;
+    }
 
-	/**
-	 * @param k
-	 *            : k is range of the square root sequence
-	 * @return the k-th value of the square root sequence
-	 */
-	abstract Fraction kThValue(long k);
+    /**
+     * @param k
+     *            : k is range of the square root sequence
+     * @return the k-th value of the square root sequence
+     */
+    abstract Fraction kThValue(long k);
 }
