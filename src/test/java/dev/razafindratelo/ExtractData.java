@@ -6,21 +6,23 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- *  ExtractData: used in SquareRootTest to retrieve comparative data from NASA (/datas)
+ * ExtractData: used in SquareRootTest to retrieve comparative data from NASA
+ * (/datas)
  */
 public class ExtractData {
-    public static String extract(String path) throws IOException {
-        StringBuilder content = new StringBuilder();
-        File file = new File(path);
+	public static String extract(String path) throws IOException {
+		StringBuilder content = new StringBuilder();
+		File file = new File(path);
 
-        BufferedReader br = new BufferedReader(new FileReader(file.getAbsolutePath())); {
-            String line;
+		BufferedReader br = new BufferedReader(new FileReader(file.getAbsolutePath()));
+		{
+			String line;
 
-            while ((line = br.readLine()) != null) {
-                content.append(line);
-            }
+			while ((line = br.readLine()) != null) {
+				content.append(line);
+			}
 
-            return content.toString();
-        }
-    }
+			return content.toString();
+		}
+	}
 }
