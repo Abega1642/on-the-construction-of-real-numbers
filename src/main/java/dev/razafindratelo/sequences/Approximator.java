@@ -31,16 +31,16 @@ public class Approximator extends Sequence {
         if (k == 1)
             return Fraction.valueOf(rootValue << 1,squareDeviation);
 
-        Fraction sq_k_2 = Fraction.valueOf(rootValue << 1,squareDeviation);
-        Fraction sq_k_1 = Fraction.valueOf(rootValue * (rootValueSquared + this.getN()) << 2,
+        Fraction sqK2 = Fraction.valueOf(rootValue << 1,squareDeviation);
+        Fraction sqK1 = Fraction.valueOf(rootValue * (rootValueSquared + this.getN()) << 2,
                 squareDeviation * squareDeviation);
 
-        Fraction kThValue = sq_k_1;
+        Fraction kThValue = sqK1;
 
         for (long i = 3; i <= k; i++) {
-            kThValue = sq_k_1.multiply(sq_k_1.divide(sq_k_2).toThePowerOf(2).add(-2));
-            sq_k_2 = sq_k_1;
-            sq_k_1 = kThValue;
+            kThValue = sqK1.multiply(sqK1.divide(sqK2).toThePowerOf(2).add(-2));
+            sqK2 = sqK1;
+            sqK1 = kThValue;
         }
 
         return kThValue;

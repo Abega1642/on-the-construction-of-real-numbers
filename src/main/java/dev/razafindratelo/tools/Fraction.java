@@ -13,8 +13,8 @@ import java.util.Random;
 @ToString
 @EqualsAndHashCode
 public class Fraction {
-    public static Fraction ZERO = Fraction.valueOf(0,1);
-    public static Fraction ONE = Fraction.valueOf(1,1);
+    public static final Fraction ZERO = Fraction.valueOf(0,1);
+    public static final Fraction ONE = Fraction.valueOf(1,1);
 
     private BigInteger numerator;
     private BigInteger denominator;
