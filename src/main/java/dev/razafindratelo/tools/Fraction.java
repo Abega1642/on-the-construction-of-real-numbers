@@ -15,6 +15,7 @@ import java.util.Random;
 public class Fraction {
     public static final Fraction ZERO = Fraction.valueOf(0,1);
     public static final Fraction ONE = Fraction.valueOf(1,1);
+    private static final Random random = new Random();
 
     private BigInteger numerator;
     private BigInteger denominator;
@@ -56,7 +57,6 @@ public class Fraction {
     }
 
     public static Fraction getRandom(long from, long to) {
-        Random random = new Random();
 
         BigInteger num = BigInteger.valueOf(random.nextLong(from,to + 1));
         BigInteger den = BigInteger.valueOf(random.nextLong(from,to + 1));

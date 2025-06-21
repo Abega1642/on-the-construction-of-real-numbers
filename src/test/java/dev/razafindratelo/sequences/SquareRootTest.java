@@ -107,7 +107,7 @@ class SquareRootTest {
 
         MathContext precision = new MathContext(1_000_002);
         String actual = sqrt7.kThValue(20).getValue(precision).toString().substring(0,1_000_002);
-        
+
         assertEquals(expected,actual);
     }
 }
