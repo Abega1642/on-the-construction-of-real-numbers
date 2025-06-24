@@ -3,19 +3,20 @@ package dev.razafindratelo.tools.gmp;
 import com.sun.jna.Memory;
 import com.sun.jna.Pointer;
 
-public class GMPUtil {
+import java.util.function.BiFunction;
+
+public class GCD implements BiFunction<String, String, String> {
     private static final GMP INSTANCE = GMP.INSTANCE;
 
     /**
      * Computes GCD of two very large numbers (100+ digits) using GMP.
      * 
-     * @param a
-     *            First number as a string (base 10)
-     * @param b
-     *            Second number as a string (base 10)
+     * @param a First number as a string (base 10)
+     * @param b Second number as a string (base 10)
      * @return GCD as a string (base 10)
      */
-    public static String gcd(String a, String b) {
+    @Override
+    public String apply(String a, String b) {
         Pointer mpzA = new Memory(16);
         Pointer mpzB = new Memory(16);
         Pointer result = new Memory(16);
@@ -44,5 +45,4 @@ public class GMPUtil {
             INSTANCE.__gmpz_clear(result);
         }
     }
-
 }

@@ -14,11 +14,16 @@ public class Approximator extends Sequence {
     private final long rootValueSquared;
     private final long squareDeviation;
 
-    public Approximator(long n) {
+    private Approximator(long n) {
         super(n);
         this.rootValue = (int) Math.ceil(Math.sqrt(n));
         this.rootValueSquared = rootValue * rootValue;
         this.squareDeviation = rootValueSquared - n;
+    }
+
+    public static Approximator of(long n) {
+        if (n <= 0) throw new IllegalArgumentException("n must be greater than 0");
+        return new Approximator(n);
     }
 
     @Override

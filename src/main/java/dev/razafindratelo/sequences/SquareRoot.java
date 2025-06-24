@@ -9,8 +9,13 @@ import lombok.Getter;
 @Getter
 public class SquareRoot extends Sequence {
 
-    public SquareRoot(long n) {
+    private SquareRoot(long n) {
         super(n);
+    }
+
+    public static SquareRoot of(long n) {
+        if (n <= 0) throw new IllegalArgumentException("n must be greater than 0");
+        return new SquareRoot(n);
     }
 
     @Override
@@ -18,7 +23,7 @@ public class SquareRoot extends Sequence {
         if (this.getN() == 1)
             return Fraction.ONE;
 
-        final Approximator sqSub = new Approximator(this.getN());
+        final Approximator sqSub = Approximator.of(this.getN());
 
         if (this.getN() == sqSub.getRootValueSquared())
             return Fraction.valueOf(sqSub.getRootValue());

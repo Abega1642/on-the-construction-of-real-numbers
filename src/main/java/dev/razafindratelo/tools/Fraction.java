@@ -1,6 +1,6 @@
 package dev.razafindratelo.tools;
 
-import dev.razafindratelo.tools.gmp.GMPUtil;
+import dev.razafindratelo.tools.gmp.GCD;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -16,7 +16,6 @@ public class Fraction {
     public static final Fraction ZERO = Fraction.valueOf(0,1);
     public static final Fraction ONE = Fraction.valueOf(1,1);
     private static final Random random = new Random();
-
     private BigInteger numerator;
     private BigInteger denominator;
 
@@ -24,7 +23,8 @@ public class Fraction {
         if (BigInteger.ZERO.equals(denominator))
             throw new IllegalArgumentException("Denominator must be non-zero");
 
-        String gcdStr = GMPUtil.gcd(numerator.toString(),denominator.toString());
+        final GCD gcdFactory = new GCD();
+        String gcdStr = gcdFactory.apply(numerator.toString(),denominator.toString());
 
         BigInteger gcd = new BigInteger(gcdStr);
 
