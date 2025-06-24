@@ -9,7 +9,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 @ToString
 public abstract class Sequence {
-    private long n;
+    private final long n;
 
     protected Sequence(long n) {
         this.n = n;

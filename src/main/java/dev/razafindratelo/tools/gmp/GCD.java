@@ -2,10 +2,9 @@ package dev.razafindratelo.tools.gmp;
 
 import com.sun.jna.Memory;
 import com.sun.jna.Pointer;
+import java.util.function.BinaryOperator;
 
-import java.util.function.BiFunction;
-
-public class GCD implements BiFunction<String, String, String> {
+public class GCD implements BinaryOperator<String> {
     private static final GMP INSTANCE = GMP.INSTANCE;
 
     /**
