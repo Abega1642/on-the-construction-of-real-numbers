@@ -19,14 +19,14 @@ public final class HeronSequence extends Sequence {
 
     @Override
     Fraction kThValue(long k) {
-        if (k < 0) throw new IllegalArgumentException("k must be greater than zero");
+        if (k < 0)
+            throw new IllegalArgumentException("k must be greater than zero");
 
-        if (k == 0) return Fraction.valueOf(2);
+        if (k == 0)
+            return Fraction.valueOf(2);
 
         Fraction previous = kThValue(k - 1);
 
-        return ONE_HALF.multiply(
-                previous.add(TWO.divide(previous))
-        );
+        return ONE_HALF.multiply(previous.add(TWO.divide(previous)));
     }
 }

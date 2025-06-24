@@ -14,7 +14,8 @@ public final class SquareRoot extends Sequence {
     }
 
     public static SquareRoot of(long n) {
-        if (n <= 0) throw new IllegalArgumentException("n must be greater than 0");
+        if (n <= 0)
+            throw new IllegalArgumentException("n must be greater than 0");
         return new SquareRoot(n);
     }
 

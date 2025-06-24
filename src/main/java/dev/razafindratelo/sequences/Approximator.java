@@ -22,7 +22,8 @@ public final class Approximator extends Sequence {
     }
 
     public static Approximator of(long n) {
-        if (n <= 0) throw new IllegalArgumentException("n must be greater than 0");
+        if (n <= 0)
+            throw new IllegalArgumentException("n must be greater than 0");
         return new Approximator(n);
     }
 

@@ -10,8 +10,10 @@ public class GCD implements BinaryOperator<String> {
     /**
      * Computes GCD of two very large numbers (100+ digits) using GMP.
      * 
-     * @param a First number as a string (base 10)
-     * @param b Second number as a string (base 10)
+     * @param a
+     *            First number as a string (base 10)
+     * @param b
+     *            Second number as a string (base 10)
      * @return GCD as a string (base 10)
      */
     @Override
