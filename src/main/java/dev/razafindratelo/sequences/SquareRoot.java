@@ -7,7 +7,7 @@ import lombok.Getter;
  * SquareRoot sequence: the sequence (x_n)
  */
 @Getter
-public class SquareRoot extends Sequence {
+public final class SquareRoot extends Sequence {
 
     private SquareRoot(long n) {
         super(n);

@@ -9,7 +9,7 @@ import lombok.Getter;
  */
 @Getter
 @EqualsAndHashCode(callSuper = true)
-public class Approximator extends Sequence {
+public final class Approximator extends Sequence {
     private final long rootValue;
     private final long rootValueSquared;
     private final long squareDeviation;

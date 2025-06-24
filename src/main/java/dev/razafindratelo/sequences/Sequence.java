@@ -8,7 +8,7 @@ import lombok.ToString;
 @Data
 @EqualsAndHashCode
 @ToString
-public abstract class Sequence {
+public sealed abstract class Sequence permits Approximator, SquareRoot, HeronSequence {
     private final long n;
 
     protected Sequence(long n) {
