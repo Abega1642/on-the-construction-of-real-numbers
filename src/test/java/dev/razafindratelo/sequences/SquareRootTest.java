@@ -22,7 +22,7 @@ class SquareRootTest {
 
         MathContext precision = new MathContext(0);
 
-        assertEquals(expected, subject.kThValue(1).getValue(precision).toString());
+        assertEquals(expected, subject.kThValue(0).getValue(precision).toString());
     }
 
     /**
@@ -32,10 +32,11 @@ class SquareRootTest {
     void test_the_square_root_of_2_with__6_000_000__decimals_places_for_k_eq_23() throws IOException {
         var subject = SquareRoot.of(2);
 
-        String expected = ExtractData.extract("data/sqrt_2.txt");
+        final int lengthPrecision = 6_000_002;
+        MathContext precision = new MathContext(lengthPrecision + 4);
 
-        MathContext precision = new MathContext(6_000_006);
-        String actual = subject.kThValue(23).getValue(precision).toString().substring(0,6_000_002);
+        String expected = ExtractData.extract("data/sqrt_2.txt");
+        String actual = subject.kThValue(23).getValue(precision).toString().substring(0, lengthPrecision);
 
         assertEquals(expected, actual);
     }
@@ -46,13 +47,14 @@ class SquareRootTest {
     @Test
     void test_the_square_root_of_3_with__1_000_000__decimals_places_for_k_eq_20() throws IOException {
         var subject = SquareRoot.of(3);
-        String expected = ExtractData.extract("data/sqrt_3.txt");
 
-        MathContext precision = new MathContext(1_000_002);
-        String actual = subject.kThValue(20).getValue(precision).toString().substring(0,1_000_002);
+        final int lengthPrecision = 1_000_002;
+        MathContext precision = new MathContext(lengthPrecision);
+
+        String expected = ExtractData.extract("data/sqrt_3.txt");
+        String actual = subject.kThValue(20).getValue(precision).toString().substring(0, lengthPrecision);
 
         assertEquals(expected, actual);
-
     }
 
     /**
@@ -75,10 +77,12 @@ class SquareRootTest {
     @Test
     void test_the_square_root_of_5_with__1_000_000__decimals_places_for_k_eq_21() throws IOException {
         var subject = SquareRoot.of(5);
-        String expected = ExtractData.extract("data/sqrt_5.txt");
 
-        MathContext precision = new MathContext(1_000_002);
-        String actual = subject.kThValue(21).getValue(precision).toString().substring(0,1_000_002);
+        final int lengthPrecision = 1_000_002;
+        MathContext precision = new MathContext(lengthPrecision);
+
+        String expected = ExtractData.extract("data/sqrt_5.txt");
+        String actual = subject.kThValue(21).getValue(precision).toString().substring(0, lengthPrecision);
 
         assertEquals(expected, actual);
     }
@@ -89,10 +93,12 @@ class SquareRootTest {
     @Test
     void test_the_square_root_of_6_with__1_000_000__decimals_places_for_k_eq_20() throws IOException {
         var subject = SquareRoot.of(6);
-        String expected = ExtractData.extract("data/sqrt_6.txt");
 
-        MathContext precision = new MathContext(1_000_002);
-        String actual = subject.kThValue(20).getValue(precision).toString().substring(0,1_000_002);
+        final int lengthPrecision = 1_000_002;
+        MathContext precision = new MathContext(lengthPrecision);
+
+        String expected = ExtractData.extract("data/sqrt_6.txt");
+        String actual = subject.kThValue(20).getValue(precision).toString().substring(0, lengthPrecision);
 
         assertEquals(expected, actual);
     }
@@ -103,10 +109,12 @@ class SquareRootTest {
     @Test
     void test_the_square_root_of_7_with__1_000_000__decimals_places_for_k_eq_20() throws IOException {
         var sqrt7 = SquareRoot.of(7);
-        String expected = ExtractData.extract("data/sqrt_7.txt");
 
-        MathContext precision = new MathContext(1_000_002);
-        String actual = sqrt7.kThValue(20).getValue(precision).toString().substring(0,1_000_002);
+        final int lengthPrecision = 1_000_002;
+        MathContext precision = new MathContext(lengthPrecision);
+
+        String expected = ExtractData.extract("data/sqrt_7.txt");
+        String actual = sqrt7.kThValue(20).getValue(precision).toString().substring(0, lengthPrecision);
 
         assertEquals(expected, actual);
     }

@@ -9,6 +9,7 @@ import java.io.IOException;
  * ExtractData: used in SquareRootTest to retrieve comparative data from NASA (/datas)
  */
 public class ExtractData {
+
     public static String extract(String path) throws IOException {
         StringBuilder content = new StringBuilder();
         File file = new File(path);
