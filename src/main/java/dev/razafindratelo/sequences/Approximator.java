@@ -30,7 +30,7 @@ public final class Approximator extends Sequence {
     @Override
     public Fraction kThValue(long k) {
 
-        if (rootValueSquared == this.getN())
+        if (rootValueSquared == this.getNat())
             return Fraction.ZERO;
         if (k == 0)
             return Fraction.valueOf(rootValue);
@@ -38,13 +38,13 @@ public final class Approximator extends Sequence {
             return Fraction.valueOf(rootValue << 1,squareDeviation);
 
         Fraction sqK2 = Fraction.valueOf(rootValue << 1,squareDeviation);
-        Fraction sqK1 = Fraction.valueOf(rootValue * (rootValueSquared + this.getN()) << 2,
+        Fraction sqK1 = Fraction.valueOf(rootValue * (rootValueSquared + this.getNat()) << 2,
                 squareDeviation * squareDeviation);
 
         Fraction kThValue = sqK1;
 
         for (long i = 3; i <= k; i++) {
-            kThValue = sqK1.multiply(sqK1.divide(sqK2).toThePowerOf(2).add(-2));
+            kThValue = sqK1.multiply(sqK1.divide(sqK2).toThePowerOf(2).add(Fraction.TWO.opposite()));
             sqK2 = sqK1;
             sqK1 = kThValue;
         }

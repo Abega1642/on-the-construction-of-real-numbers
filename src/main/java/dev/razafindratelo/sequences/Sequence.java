@@ -9,10 +9,10 @@ import lombok.ToString;
 @EqualsAndHashCode
 @ToString
 public sealed abstract class Sequence permits Approximator, SquareRoot, HeronSequence {
-    private final long n;
+    private final long nat;
 
-    protected Sequence(long n) {
-        this.n = n;
+    protected Sequence(long nat) {
+        this.nat = nat;
     }
 
     /**

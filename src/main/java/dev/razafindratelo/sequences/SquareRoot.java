@@ -21,12 +21,12 @@ public final class SquareRoot extends Sequence {
 
     @Override
     public Fraction kThValue(long k) {
-        if (this.getN() == 1)
+        if (this.getNat() == 1)
             return Fraction.ONE;
 
-        final Approximator sqSub = Approximator.of(this.getN());
+        final Approximator sqSub = Approximator.of(this.getNat());
 
-        if (this.getN() == sqSub.getRootValueSquared())
+        if (this.getNat() == sqSub.getRootValueSquared())
             return Fraction.valueOf(sqSub.getRootValue());
 
         if (k == 0) {
