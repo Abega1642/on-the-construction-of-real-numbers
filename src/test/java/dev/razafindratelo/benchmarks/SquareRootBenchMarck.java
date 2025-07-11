@@ -2,8 +2,6 @@ package dev.razafindratelo.benchmarks;
 
 import dev.razafindratelo.sequences.SquareRoot;
 import dev.razafindratelo.tools.Fraction;
-
-import java.io.IOException;
 import java.math.MathContext;
 
 public class SquareRootBenchMarck {
@@ -50,7 +48,7 @@ public class SquareRootBenchMarck {
         System.out.println(showResult("Decimal Form",2,23,lengthPrecision,durationInSeconds));
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         sqrtOfTwoFractionForm();
         sqrtOfTwoDecimalForm();
     }
