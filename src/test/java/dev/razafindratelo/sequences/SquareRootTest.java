@@ -1,121 +1,121 @@
 package dev.razafindratelo.sequences;
 
-import dev.razafindratelo.ExtractData;
-import org.junit.jupiter.api.Test;
-import java.io.IOException;
-import java.math.MathContext;
 import static org.junit.jupiter.api.Assertions.*;
 
+import dev.razafindratelo.ExtractData;
+import java.io.IOException;
+import java.math.MathContext;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 /**
- * Number of tests: 7 Number of Success test: 7 Execution time: 5 min 20 ms for all test combined in one run (might be
- * less than that according to computer's power)
+ * Number of tests: 7 Number of Success test: 7 Execution time: 5 min 20 ms for all test combined in
+ * one run (might be less than that according to computer's power)
  */
 class SquareRootTest {
 
-    /**
-     * Duration: 226 ms
-     */
-    @Test
-    void test_square_root_of_1() {
-        var subject = SquareRoot.of(1);
-        String expected = "1";
+  private static SquareRoot subject;
 
-        MathContext precision = new MathContext(0);
+  @BeforeEach
+  void setUp() {
+    subject = new SquareRoot();
+  }
 
-        assertEquals(expected,subject.kThValue(0).getValue(precision).toString());
-    }
+  /** Duration: 226 ms */
+  @Test
+  void test_square_root_of_1() {
+    subject.targetNat(1);
+    String expected = "1";
 
-    /**
-     * Duration: 4min 02s
-     */
-    @Test
-    void test_the_square_root_of_2_with__6_000_000__decimals_places_for_k_eq_23() throws IOException {
-        var subject = SquareRoot.of(2);
+    MathContext precision = new MathContext(0);
 
-        final int lengthPrecision = 6_000_002;
-        MathContext precision = new MathContext(lengthPrecision + 4);
+    assertEquals(expected, subject.kThValue(0).getValue(precision).toString());
+  }
 
-        String expected = ExtractData.extract("data/sqrt_2.txt");
-        String actual = subject.kThValue(23).getValue(precision).toString().substring(0,lengthPrecision);
+  /** Duration: 4min 02s */
+  @Test
+  void test_the_square_root_of_2_with__6_000_000__decimals_places_for_k_eq_23() throws IOException {
+    subject.targetNat(2);
 
-        assertEquals(expected,actual);
-    }
+    final int lengthPrecision = 6_000_002;
+    MathContext precision = new MathContext(lengthPrecision + 4);
 
-    /**
-     * Duration: 16s 798ms
-     */
-    @Test
-    void test_the_square_root_of_3_with__1_000_000__decimals_places_for_k_eq_20() throws IOException {
-        var subject = SquareRoot.of(3);
+    String expected = ExtractData.extract("data/sqrt_2.txt");
+    String actual =
+        subject.kThValue(23).getValue(precision).toString().substring(0, lengthPrecision);
 
-        final int lengthPrecision = 1_000_002;
-        MathContext precision = new MathContext(lengthPrecision);
+    assertEquals(expected, actual);
+  }
 
-        String expected = ExtractData.extract("data/sqrt_3.txt");
-        String actual = subject.kThValue(20).getValue(precision).toString().substring(0,lengthPrecision);
+  /** Duration: 16s 798ms */
+  @Test
+  void test_the_square_root_of_3_with__1_000_000__decimals_places_for_k_eq_20() throws IOException {
+    subject.targetNat(3);
 
-        assertEquals(expected,actual);
-    }
+    final int lengthPrecision = 1_000_002;
+    MathContext precision = new MathContext(lengthPrecision);
 
-    /**
-     * Duration: 1 ms
-     */
-    @Test
-    void test_the_square_root_of_4() {
-        var subject = SquareRoot.of(4);
-        String expected = "2";
+    String expected = ExtractData.extract("data/sqrt_3.txt");
+    String actual =
+        subject.kThValue(20).getValue(precision).toString().substring(0, lengthPrecision);
 
-        MathContext precision = new MathContext(0);
-        String actual = subject.kThValue(0).getValue(precision).toString();
+    assertEquals(expected, actual);
+  }
 
-        assertEquals(expected,actual);
-    }
+  /** Duration: 1 ms */
+  @Test
+  void test_the_square_root_of_4() {
+    subject.targetNat(4);
+    String expected = "2";
 
-    /**
-     * Duration: 28s 640ms
-     */
-    @Test
-    void test_the_square_root_of_5_with__1_000_000__decimals_places_for_k_eq_21() throws IOException {
-        var subject = SquareRoot.of(5);
+    MathContext precision = new MathContext(0);
+    String actual = subject.kThValue(0).getValue(precision).toString();
 
-        final int lengthPrecision = 1_000_002;
-        MathContext precision = new MathContext(lengthPrecision);
+    assertEquals(expected, actual);
+  }
 
-        String expected = ExtractData.extract("data/sqrt_5.txt");
-        String actual = subject.kThValue(21).getValue(precision).toString().substring(0,lengthPrecision);
+  /** Duration: 28s 640ms */
+  @Test
+  void test_the_square_root_of_5_with__1_000_000__decimals_places_for_k_eq_21() throws IOException {
+    subject.targetNat(5);
 
-        assertEquals(expected,actual);
-    }
+    final int lengthPrecision = 1_000_002;
+    MathContext precision = new MathContext(lengthPrecision);
 
-    /**
-     * Duration: 15s 597ms
-     */
-    @Test
-    void test_the_square_root_of_6_with__1_000_000__decimals_places_for_k_eq_20() throws IOException {
-        var subject = SquareRoot.of(6);
+    String expected = ExtractData.extract("data/sqrt_5.txt");
+    String actual =
+        subject.kThValue(21).getValue(precision).toString().substring(0, lengthPrecision);
 
-        final int lengthPrecision = 1_000_002;
-        MathContext precision = new MathContext(lengthPrecision);
+    assertEquals(expected, actual);
+  }
 
-        String expected = ExtractData.extract("data/sqrt_6.txt");
-        String actual = subject.kThValue(20).getValue(precision).toString().substring(0,lengthPrecision);
+  /** Duration: 15s 597ms */
+  @Test
+  void test_the_square_root_of_6_with__1_000_000__decimals_places_for_k_eq_20() throws IOException {
+    subject.targetNat(6);
 
-        assertEquals(expected,actual);
-    }
+    final int lengthPrecision = 1_000_002;
+    MathContext precision = new MathContext(lengthPrecision);
 
-    /**
-     * Duration: 17s 797ms
-     */
-    @Test
-    void test_the_square_root_of_7_with__1_000_000__decimals_places_for_k_eq_20() throws IOException {
-        var sqrt7 = SquareRoot.of(7);
+    String expected = ExtractData.extract("data/sqrt_6.txt");
+    String actual =
+        subject.kThValue(20).getValue(precision).toString().substring(0, lengthPrecision);
 
-        final int lengthPrecision = 1_000_002;
-        MathContext precision = new MathContext(lengthPrecision);
+    assertEquals(expected, actual);
+  }
 
-        String expected = ExtractData.extract("data/sqrt_7.txt");
-        String actual = sqrt7.kThValue(20).getValue(precision).toString().substring(0,lengthPrecision);
+  /** Duration: 17s 797ms */
+  @Test
+  void test_the_square_root_of_7_with__1_000_000__decimals_places_for_k_eq_20() throws IOException {
+    subject.targetNat(7);
 
-        assertEquals(expected,actual);
-    }
+    final int lengthPrecision = 1_000_002;
+    MathContext precision = new MathContext(lengthPrecision);
+
+    String expected = ExtractData.extract("data/sqrt_7.txt");
+    String actual =
+        subject.kThValue(20).getValue(precision).toString().substring(0, lengthPrecision);
+
+    assertEquals(expected, actual);
+  }
 }
