@@ -35,4 +35,9 @@ public final class SquareRoot implements Sequence {
       return kThValue.add(approximator.getRootValue());
     }
   }
+
+  @Override
+  public String toString() {
+    return "SquareRoot::" + targetNat;
+  }
 }

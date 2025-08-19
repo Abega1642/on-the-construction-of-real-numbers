@@ -43,4 +43,9 @@ public final class Approximator implements Sequence {
 
     return kThValue;
   }
+
+  @Override
+  public String toString() {
+    return "Approximator::" + targetNat;
+  }
 }
